@@ -9,7 +9,6 @@
 body {
     background-image: url("./background.png");
     background-attachment: fixed;
-
 }
 
 main {
@@ -19,9 +18,9 @@ main {
     border-image: url(border.gif) 20% round;
     width: 80%;
     height: 80%;
-    min-height: 80%;
     margin: auto;
 }
+
 
 a:link    {
     text-decoration:  none;
@@ -31,7 +30,6 @@ a:link    {
 } 
 
 .logo {
-
 
     padding-top: 40px;
     vertical-align: top;
@@ -58,7 +56,6 @@ a:link    {
 .fun {
     vertical-align: top;
     display:inline-block;
-
     font-size: 80px;
     -webkit-text-stroke: 1px red;
     -webkit-text-fill-color: white;
@@ -70,70 +67,103 @@ a:link    {
     float: right;
 }
 
-section {
-    /* color rgb(243,234,95) is used */
-    background: rgb(243, 234, 95);
-    position: relative;
-    left: 10%;
-    width: 80%;
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+    section {
+        /* color rgb(243,234,95) is used */
+        position: relative;
+    }
+
+    section > div {
+        /* font is 'Comic Sans MS, text is automatically adjusted to lowercase do not mod the HTML */
+        font-family: "Comic Sans MS";
+        text-transform: lowercase;
+        -webkit-text-fill-color: white;
+        font-size: 14pt;
+        height: 60px;
+        line-height: 60px;
+    }
+
+    section > div:nth-child(odd) {
+        background: rgb(192, 77, 249);
+        position: relative;
+        padding-left: 10px;
+    }
+
+    section > div:nth-child(even) {
+        background: rgb(43, 209, 252);
+        position: relative;
+        padding-right: 10px;
+    }
+
+    section > div:nth-child(1) {
+        top: 180px;
+    }
+
+    section > div:nth-child(2) {
+        top: 60px;
+    }
+
+    section > div:nth-child(3) {
+        top: -60px;
+    }
+
+    section > div:nth-child(4) {
+        top: -180px;
+    }
 }
 
-section > div {
-    /* font is 'Comic Sans MS, text is automatically adjusted to lowercase do not mod the HTML */
-    font-family: "Comic Sans MS";
-    text-transform: lowercase;
-    width: 80%;
-    -webkit-text-fill-color: white;
-    font-size: 14pt;
-}
+@media only screen
+and (min-width : 1224px) {
+    section {
+        /* color rgb(243,234,95) is used */
+        background: rgb(243, 234, 95);
+        position: relative;
+    }
 
-section > div:nth-child(2):after {
-    content: " ";
-}
+    section > div {
+        /* font is 'Comic Sans MS, text is automatically adjusted to lowercase do not mod the HTML */
+        font-family: "Comic Sans MS";
+        text-transform: lowercase;
+        -webkit-text-fill-color: white;
+        font-size: 14pt;
+        height: 60px;
+        line-height: 60px;
+    }
 
-section > div:nth-child(odd):before {
-    content: " ";
-}
+    section > div:nth-child(odd) {
+        background: rgb(192, 77, 249);
+        position: relative;
+        left: 50%;
+        width: 50%;
+        padding-left: 10px;
+    }
 
-section > div:nth-child(odd) {
-    /* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
-    /* background color is  rgb(192,77,249) */
-    height: 40px;
-    background: rgb(192, 77, 249);
-    position: relative;
-    left: 50%;
-    width: 50%;
-}
-
-section > div:nth-child(even) {
-    /* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
-    /* background color is  rgb(43,209,252) */
-    height: 40px;
-    background: rgb(43, 209, 252);
-    position: relative;
-    text-align: right;
-    width: 50%;
+    section > div:nth-child(even) {
+        background: rgb(43, 209, 252);
+        position: relative;
+        text-align: right;
+        width: 50%;
+        padding-right: 10px;
+    }
 }
 
 section > div:nth-child(1) {
-    top: 120px;
+    top: 180px;
 }
 
 section > div:nth-child(2) {
-    top: 40px;
+    top: 60px;
 }
 
 section > div:nth-child(3) {
-    top: -40px;
+    top: -60px;
 }
 
 section > div:nth-child(4) {
-    top: -120px;
-}
-
-#column-content section > div {
-    vertical-align: middle;
-    line-height: 15px;
+    top: -180px;
 }
 
 section > div:nth-child(3):after {
@@ -143,19 +173,42 @@ section > div:nth-child(3):after {
 }
 
 footer {
-    text-align: center;
+	font-family: "Lucida Handwriting";
+	text-align: center;
+	background-color: rgb(233,106,198);
+	margin: -10px -36px -32px -36px;
+}
+
+footer > .wrapper > img {
+	height: 15%;
+	width: 15%;
 }
 
 /* Properties of "Meow" text */
 footer > .wrapper > span {
-    vertical-align: top;
-    visibility: hidden;
+	vertical-align: top;
+	width: 320px;
+    padding: 10px;
+    border: 5px solid black;
+    margin: 0; 
+	border-radius: 10px;
+	box-shadow: 1px 4px 2px #888888;
+	visibility: hidden;
+	background-color: white;
 }
 
 /* Show upon hovering over the cat */
 footer > .wrapper:hover > span {
-    visibility: visible;
+	-webkit-animation: cat-anim 2s linear 1;
+	visibility: visible;
 }
+
+/* Cat fade-in animation */
+@-webkit-keyframes cat-anim { 
+	0%	{ opacity: 0; }
+	100% { opacity: 1; }
+}
+
 
 
 /* a freebie for fun */
@@ -177,7 +230,7 @@ aside {
 /* Bug properties */
 aside > p > svg {
     fill: white;
-    width: 4%; 
+    width: 4%;
     height: auto;
     vertical-align: middle;
 }
@@ -189,10 +242,10 @@ aside > p > svg:hover {
 }
 
 /* Bug spinning animation */
-@-webkit-keyframes bug-anim { 
+@-webkit-keyframes bug-anim {
     0%  { opacity: 1; }
     10% { -webkit-transform: scale(5, 5); }
-    30% { -webkit-transform: rotate(1080deg); } 
+    30% { -webkit-transform: rotate(1080deg); }
     85% { opacity: 1; }
     100% { opacity: 0; }
 }
