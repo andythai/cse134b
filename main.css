@@ -56,36 +56,90 @@ main {
 
 }
 
-section {
-    /* color rgb(243,234,95) is used */
-    background: rgb(243, 234, 95);
-    position: relative;
+
+
+
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+    section {
+        /* color rgb(243,234,95) is used */
+        position: relative;
+    }
+
+    section > div {
+        /* font is 'Comic Sans MS, text is automatically adjusted to lowercase do not mod the HTML */
+        font-family: "Comic Sans MS";
+        text-transform: lowercase;
+        -webkit-text-fill-color: white;
+        font-size: 14pt;
+        height: 60px;
+        line-height: 60px;
+    }
+
+    section > div:nth-child(odd) {
+        background: rgb(192, 77, 249);
+        position: relative;
+        padding-left: 10px;
+    }
+
+    section > div:nth-child(even) {
+        background: rgb(43, 209, 252);
+        position: relative;
+        padding-right: 10px;
+    }
+
+    section > div:nth-child(1) {
+        top: 180px;
+    }
+
+    section > div:nth-child(2) {
+        top: 60px;
+    }
+
+    section > div:nth-child(3) {
+        top: -60px;
+    }
+
+    section > div:nth-child(4) {
+        top: -180px;
+    }
 }
 
-section > div {
-    /* font is 'Comic Sans MS, text is automatically adjusted to lowercase do not mod the HTML */
-    font-family: "Comic Sans MS";
-    text-transform: lowercase;
-    -webkit-text-fill-color: white;
-    font-size: 14pt;
-    height: 60px;
-    line-height: 60px;
-}
+@media only screen
+and (min-width : 1224px) {
+    section {
+        /* color rgb(243,234,95) is used */
+        background: rgb(243, 234, 95);
+        position: relative;
+    }
 
-section > div:nth-child(odd) {
-    background: rgb(192, 77, 249);
-    position: relative;
-    left: 50%;
-    width: 50%;
-    padding-left: 10px;
-}
+    section > div {
+        /* font is 'Comic Sans MS, text is automatically adjusted to lowercase do not mod the HTML */
+        font-family: "Comic Sans MS";
+        text-transform: lowercase;
+        -webkit-text-fill-color: white;
+        font-size: 14pt;
+        height: 60px;
+        line-height: 60px;
+    }
 
-section > div:nth-child(even) {
-    background: rgb(43, 209, 252);
-    position: relative;
-    text-align: right;
-    width: 50%;
-    padding-right: 10px;
+    section > div:nth-child(odd) {
+        background: rgb(192, 77, 249);
+        position: relative;
+        left: 50%;
+        width: 50%;
+        padding-left: 10px;
+    }
+
+    section > div:nth-child(even) {
+        background: rgb(43, 209, 252);
+        position: relative;
+        text-align: right;
+        width: 50%;
+        padding-right: 10px;
+    }
 }
 
 section > div:nth-child(1) {
@@ -180,7 +234,7 @@ aside > p > svg:hover {
 }
 
 /* Bug spinning animation */
-@-webkit-keyframes bug-anim { 
+@-webkit-keyframes bug-anim {
     0%  { opacity: 1; }
     10% { -webkit-transform: scale(5, 5); }
     30% { -webkit-transform: rotate(1080deg); }
