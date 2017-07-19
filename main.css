@@ -29,7 +29,7 @@ a:link    {
     font-weight:      bold;
     background-color: #ddd;
     color:            blue;
-} 
+}
 
 .logo {
     padding-top: 40px;
@@ -51,6 +51,7 @@ a:link    {
     font-variant: normal;
     font-weight: 500;
     line-height: 26px;
+
 }
 
 .fun {
@@ -63,8 +64,9 @@ a:link    {
     text-shadow: red 0 -2px;
     font-family: courier;
     float: right;
-}
 
+
+}
 
 @media only screen
 and (min-device-width : 320px) {
@@ -162,16 +164,18 @@ footer {
 }
 
 footer > .wrapper > img {
-    height: 15%;
-    width: 15%;
+    height: 10%;
+    width: 10%;
     position: relative;
     left: 35px;
+    margin-top: 20px;
 }
 
 /* Properties of "Meow" text */
 footer > .wrapper > span {
     position: relative;
-    left: 35px;
+    left: 50px;
+    top: 25px;
     vertical-align: top;
     width: 320px;
     padding: 10px;
@@ -184,7 +188,7 @@ footer > .wrapper > span {
 }
 
 /* Show upon hovering over the cat */
-footer > .wrapper:hover > span {
+footer > .wrapper > img:hover ~ span {
     -webkit-animation: cat-anim 2s linear 1;
     visibility: visible;
 }
@@ -211,12 +215,13 @@ aside {
     margin: 1rem 0;
     margin-bottom: 4rem;
     padding-bottom: 60px;
+    height: 150px;
     text-align: center;
 }
 
 aside > p {
-    height: 60px;
-    line-height: 60px;
+    position: relative;
+    top: -3rem;
 }
 
 /* Bug properties */
