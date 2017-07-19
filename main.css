@@ -21,26 +21,10 @@ main {
     margin: auto;
 }
 
-<<<<<<< HEAD
-a:link    {
-    text-decoration:  none;
-    font-weight:      bold;
-    background-color: #ddd;
-    color:            blue;
-} 
-
-
 .logo {
     display:inline-block;
     text-align: center;
     position: center;
-=======
-header {
-    position: relative;
-}
-
-header > div > a {
->>>>>>> dirty
     width: 200px;
     height: 100px;
     background: pink;
