@@ -30,8 +30,11 @@ a:link    {
     color:            blue;
 } 
 
-
 .logo {
+
+
+    padding-top: 40px;
+    vertical-align: top;
     display:inline-block;
     text-align: center;
     position: center;
@@ -41,12 +44,8 @@ a:link    {
     -moz-border-radius: 100px / 50px;
     -webkit-border-radius: 100px / 50px;
     border-radius: 100px / 50px;
-    margin: 100px;
+    margin: 50px;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8cf87b2f928616191574124850d5e1c472ab0b68
     font-family: Monoton;
     font-size: 70px;
     font-style: normal;
@@ -56,14 +55,10 @@ a:link    {
 
 }
 
-<<<<<<< HEAD
-
-
 .fun {
+    vertical-align: top;
+    display:inline-block;
 
-=======
-header > div > div {
->>>>>>> 8cf87b2f928616191574124850d5e1c472ab0b68
     font-size: 80px;
     -webkit-text-stroke: 1px red;
     -webkit-text-fill-color: white;
@@ -73,8 +68,6 @@ header > div > div {
     text-shadow: red 0 -2px;
     font-family: courier;
     float: right;
-
-
 }
 
 section {
