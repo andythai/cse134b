@@ -32,19 +32,18 @@ a:link    {
 } 
 
 .logo {
-
     padding-top: 40px;
-    vertical-align: top;
     display:inline-block;
     text-align: center;
     position: center;
     width: 200px;
     height: 100px;
-    background: pink;
+    background: rgb(255,105,180);
     -moz-border-radius: 100px / 50px;
     -webkit-border-radius: 100px / 50px;
     border-radius: 100px / 50px;
     margin: 50px;
+    box-shadow: 0px 40px 20px -28px #000000;
 
     font-family: Monoton;
     font-size: 70px;
@@ -52,17 +51,14 @@ a:link    {
     font-variant: normal;
     font-weight: 500;
     line-height: 26px;
-
 }
 
 .fun {
-    vertical-align: top;
-    display:inline-block;
     font-size: 80px;
     -webkit-text-stroke: 1px red;
     -webkit-text-fill-color: white;
     -webkit-box-reflect: below;
-    -webkit-box-reflect: below 0 linear-gradient(transparent, white);
+    -webkit-box-reflect: below -35px linear-gradient(transparent, white);
     text-transform: uppercase;
     text-shadow: red 0 -2px;
     font-family: courier;
