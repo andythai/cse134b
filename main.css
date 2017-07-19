@@ -19,6 +19,8 @@ main {
     width: 80%;
     height: 80%;
     margin: auto;
+    position: relative;
+    top: -150px;
 }
 
 .logo {
@@ -56,16 +58,10 @@ main {
 
 }
 
-
-
-
-
 @media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
+and (min-device-width : 320px) {
     section {
         /* color rgb(243,234,95) is used */
-        position: relative;
     }
 
     section > div {
@@ -76,6 +72,7 @@ and (max-device-width : 480px) {
         font-size: 14pt;
         height: 60px;
         line-height: 60px;
+        text-align: center;
     }
 
     section > div:nth-child(odd) {
@@ -88,22 +85,6 @@ and (max-device-width : 480px) {
         background: rgb(43, 209, 252);
         position: relative;
         padding-right: 10px;
-    }
-
-    section > div:nth-child(1) {
-        top: 180px;
-    }
-
-    section > div:nth-child(2) {
-        top: 60px;
-    }
-
-    section > div:nth-child(3) {
-        top: -60px;
-    }
-
-    section > div:nth-child(4) {
-        top: -180px;
     }
 }
 
@@ -128,6 +109,7 @@ and (min-width : 1224px) {
     section > div:nth-child(odd) {
         background: rgb(192, 77, 249);
         position: relative;
+        text-align: left;
         left: 50%;
         width: 50%;
         padding-left: 10px;
@@ -165,40 +147,44 @@ section > div:nth-child(3):after {
 }
 
 footer {
-	font-family: "Lucida Handwriting";
-	text-align: center;
-	background-color: rgb(233,106,198);
-	margin: -10px -36px -32px -36px;
+    font-family: "Lucida Handwriting";
+    text-align: center;
+    background-color: rgb(233,106,198);
+    margin: -10px -36px -32px -36px;
 }
 
 footer > .wrapper > img {
-	height: 15%;
-	width: 15%;
+    height: 15%;
+    width: 15%;
+    position: relative;
+    left: 35px;
 }
 
 /* Properties of "Meow" text */
 footer > .wrapper > span {
-	vertical-align: top;
-	width: 320px;
+    position: relative;
+    left: 35px;
+    vertical-align: top;
+    width: 320px;
     padding: 10px;
     border: 5px solid black;
-    margin: 0; 
-	border-radius: 10px;
-	box-shadow: 1px 4px 2px #888888;
-	visibility: hidden;
-	background-color: white;
+    margin: 0;
+    border-radius: 10px;
+    box-shadow: 1px 4px 2px #888888;
+    visibility: hidden;
+    background-color: white;
 }
 
 /* Show upon hovering over the cat */
 footer > .wrapper:hover > span {
-	-webkit-animation: cat-anim 2s linear 1;
-	visibility: visible;
+    -webkit-animation: cat-anim 2s linear 1;
+    visibility: visible;
 }
 
 /* Cat fade-in animation */
-@-webkit-keyframes cat-anim { 
-	0%	{ opacity: 0; }
-	100% { opacity: 1; }
+@-webkit-keyframes cat-anim {
+    0%	{ opacity: 0; }
+    100% { opacity: 1; }
 }
 
 
@@ -215,8 +201,14 @@ aside {
     font-family: sans-serif;
     font-size: 2rem;
     margin: 1rem 0;
-    padding: 1rem;
+    margin-bottom: 4rem;
+    padding-bottom: 60px;
     text-align: center;
+}
+
+aside > p {
+    height: 60px;
+    line-height: 60px;
 }
 
 /* Bug properties */
