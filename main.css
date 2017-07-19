@@ -9,7 +9,6 @@
 body {
     background-image: url("./background.png");
     background-attachment: fixed;
-
 }
 
 main {
@@ -19,10 +18,10 @@ main {
     border-image: url(border.gif) 20% round;
     width: 80%;
     height: 80%;
-    min-height: 80%;
     margin: auto;
 }
 
+<<<<<<< HEAD
 a:link    {
     text-decoration:  none;
     font-weight:      bold;
@@ -35,6 +34,13 @@ a:link    {
     display:inline-block;
     text-align: center;
     position: center;
+=======
+header {
+    position: relative;
+}
+
+header > div > a {
+>>>>>>> dirty
     width: 200px;
     height: 100px;
     background: pink;
@@ -43,10 +49,6 @@ a:link    {
     border-radius: 100px / 50px;
     margin: 100px;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8cf87b2f928616191574124850d5e1c472ab0b68
     font-family: Monoton;
     font-size: 70px;
     font-style: normal;
@@ -56,14 +58,7 @@ a:link    {
 
 }
 
-<<<<<<< HEAD
-
-
 .fun {
-
-=======
-header > div > div {
->>>>>>> 8cf87b2f928616191574124850d5e1c472ab0b68
     font-size: 80px;
     -webkit-text-stroke: 1px red;
     -webkit-text-fill-color: white;
@@ -81,66 +76,48 @@ section {
     /* color rgb(243,234,95) is used */
     background: rgb(243, 234, 95);
     position: relative;
-    left: 10%;
-    width: 80%;
 }
 
 section > div {
     /* font is 'Comic Sans MS, text is automatically adjusted to lowercase do not mod the HTML */
     font-family: "Comic Sans MS";
     text-transform: lowercase;
-    width: 80%;
     -webkit-text-fill-color: white;
     font-size: 14pt;
-}
-
-section > div:nth-child(2):after {
-    content: " ";
-}
-
-section > div:nth-child(odd):before {
-    content: " ";
+    height: 60px;
+    line-height: 60px;
 }
 
 section > div:nth-child(odd) {
-    /* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
-    /* background color is  rgb(192,77,249) */
-    height: 40px;
     background: rgb(192, 77, 249);
     position: relative;
     left: 50%;
     width: 50%;
+    padding-left: 10px;
 }
 
 section > div:nth-child(even) {
-    /* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
-    /* background color is  rgb(43,209,252) */
-    height: 40px;
     background: rgb(43, 209, 252);
     position: relative;
     text-align: right;
     width: 50%;
+    padding-right: 10px;
 }
 
 section > div:nth-child(1) {
-    top: 120px;
+    top: 180px;
 }
 
 section > div:nth-child(2) {
-    top: 40px;
+    top: 60px;
 }
 
 section > div:nth-child(3) {
-    top: -40px;
+    top: -60px;
 }
 
 section > div:nth-child(4) {
-    top: -120px;
-}
-
-#column-content section > div {
-    vertical-align: middle;
-    line-height: 15px;
+    top: -180px;
 }
 
 section > div:nth-child(3):after {
@@ -184,7 +161,7 @@ aside {
 /* Bug properties */
 aside > p > svg {
     fill: white;
-    width: 4%; 
+    width: 4%;
     height: auto;
     vertical-align: middle;
 }
@@ -199,7 +176,7 @@ aside > p > svg:hover {
 @-webkit-keyframes bug-anim { 
     0%  { opacity: 1; }
     10% { -webkit-transform: scale(5, 5); }
-    30% { -webkit-transform: rotate(1080deg); } 
+    30% { -webkit-transform: rotate(1080deg); }
     85% { opacity: 1; }
     100% { opacity: 0; }
 }
