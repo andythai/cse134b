@@ -1,5 +1,22 @@
 /* Hint: use relative measurements you'll find them useful! */
 
+/*
+CSS File size: 6kb;
+Load time on Android phone: 2 seconds;
+
+Errors:
+1. Sorry, the at-rule @-webkit-keyframes is not implemented.
+2. (Line:244) aside > p > svg Property fill doesn't exist : white
+3. Sorry, the at-rule @-webkit-keyframes is not implemented.
+
+Explanation:
+1. We get the webkit errors, because vendor-specific prefixes are not part of W3C specifications. 
+It is still safe to use and does not concern us. 
+2. The 'fill' property may not be standard across browsers, but it is still safe to use.
+
+*/
+
+
 @import url("https://fonts.googleapis.com/css?family=Monoton");  /* Set this for Monton...figure out their syntax */
 
 * {
@@ -23,6 +40,10 @@ main {
     top: -150px;
 }
 
+header > div {
+    justify-content: space-between;
+    display: flex;
+}
 
 a:link    {
     text-decoration:  none;
@@ -55,6 +76,7 @@ a:link    {
 }
 
 .fun {
+    align-self: flex-start;
     font-size: 80px;
     -webkit-text-stroke: 1px red;
     -webkit-text-fill-color: white;
@@ -64,8 +86,10 @@ a:link    {
     text-shadow: red 0 -2px;
     font-family: courier;
     float: right;
+}
 
-
+#kern2 {
+    letter-spacing: -22px;
 }
 
 @media only screen
