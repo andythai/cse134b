@@ -12,11 +12,12 @@ body {
 
 main {
     background: rgb(255,255,255);
-    background-image: url("border.gif");
-    background-repeat: no-repeat;
-    background-size: cover;
+    border-width: 50px;
+    border-style: solid;
+    border-image: url(border.gif) 20% round;
     width: 80%;
     height: 80%;
+    min-height: 80%;
     margin: auto;
 }
 
@@ -25,7 +26,7 @@ header {
 }
 
 section {
-	/* color rgb(243,234,95) is used */
+    /* color rgb(243,234,95) is used */
     background: rgb(243, 234, 95);
     position: relative;
     left: 10%;
@@ -37,11 +38,22 @@ section > div {
     font-family: "Comic Sans MS";
     text-transform: lowercase;
     width: 80%;
+    -webkit-text-fill-color: white;
+    text-align: justify;
+}
+
+section > div:nth-child(2):after {
+    content: " ";
+}
+
+section > div:nth-child(odd):before {
+    content: " ";
 }
 
 section > div:nth-child(odd) {
-	/* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
-	/* background color is  rgb(192,77,249) */
+    /* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
+    /* background color is  rgb(192,77,249) */
+    height: 40px;
     background: rgb(192, 77, 249);
     position: relative;
     left: 50%;
@@ -49,19 +61,37 @@ section > div:nth-child(odd) {
 }
 
 section > div:nth-child(even) {
-	/* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
+    /* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
     /* background color is  rgb(43,209,252) */
+    height: 40px;
     background: rgb(43, 209, 252);
     position: relative;
+    text-align: right;
     width: 50%;
 }
 
+section > div:nth-child(1) {
+    top: 120px;
+}
+
+section > div:nth-child(2) {
+    top: 40px;
+}
+
+section > div:nth-child(3) {
+    top: -40px;
+}
+
+section > div:nth-child(4) {
+    top: -120px;
+}
+
 section > div:nth-child(3):after {
-	/* gave you the nth child after selector for free to inspire you */
-	/* generated content in here ... a property can do that */
+    /* gave you the nth child after selector for free to inspire you */
+    /* generated content in here ... a property can do that */
     content: "  ♥♥♥";
 }
-	
+
 /* a freebie for fun */
 aside {
     background: rgb(255,63,63);
