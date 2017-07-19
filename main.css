@@ -1,0 +1,83 @@
+/* Hint: use relative measurements you'll find them useful! */
+
+@import url();  /* Set this for Monton...figure out their syntax */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("./background.png");
+}
+
+main {
+    background: rgb(255,255,255);
+    background-image: url("border.gif");
+    background-repeat: no-repeat;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+}
+
+header {
+
+}
+
+section {
+	/* color rgb(243,234,95) is used */
+    background: rgb(243, 234, 95);
+    position: relative;
+    left: 10%;
+    width: 80%;
+}
+
+section > div {
+    /* font is 'Comic Sans MS, text is automatically adjusted to lowercase do not mod the HTML */
+    font-family: "Comic Sans MS";
+    text-transform: lowercase;
+    width: 80%;
+}
+
+section > div:nth-child(odd) {
+	/* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
+	/* background color is  rgb(192,77,249) */
+    background: rgb(192, 77, 249);
+    position: relative;
+    left: 50%;
+    width: 50%;
+}
+
+section > div:nth-child(even) {
+	/* ANastNthChildSelectorToWrite means what it says it isn't an indetifier */
+    /* background color is  rgb(43,209,252) */
+    background: rgb(43, 209, 252);
+    position: relative;
+    width: 50%;
+}
+
+section > div:nth-child(3):after {
+	/* gave you the nth child after selector for free to inspire you */
+	/* generated content in here ... a property can do that */
+    content: "  ♥♥♥";
+}
+	
+/* a freebie for fun */
+aside {
+    background: rgb(255,63,63);
+    color: white;
+    border: 1rem solid black;
+    border-top-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-top-right-radius: 3rem;
+    border-bottom-left-radius: 3rem;
+    font-family: sans-serif;
+    font-size: 2rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+
+/* Opps truncated the file for you to fill in */
+
+/* Solution given should be below 250 lines, solution we had was below 200 easily */
