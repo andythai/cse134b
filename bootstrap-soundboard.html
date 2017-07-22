@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Bootstrap Soundboard</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+
+  </head>
+  <body>
+	<script>
+	function play(){
+    	var audio = document.getElementById("audio");
+    	audio.play();
+   	}
+	</script>
+
+  	<div class="container"> <!-- parent wrapper class -->
+    
+    <h1><a>Bootstrap Soundboard Site</a></h1>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="#">Soundboard A</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">VanillaJS Soundboard</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="#">About us</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Contact</a>
+  </li>
+
+
+</ul>
+
+<form class="form-inline">
+  <label class="sr-only" for="inlineFormInput">username: </label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Jon Snow">
+
+  <label class="sr-only" for="inlineFormInputGroup">Username</label>
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+  </div>
+
+  <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox"> Remember me
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/sw-theme.mp3" type="audio/mpeg">
+			</audio>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/sw-badfeeling.mp3" type="audio/mpeg">
+			</audio>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/sw-darthvader.mp3" type="audio/mpeg">
+			</audio>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/sw-r2d2.mp3" type="audio/mpeg">
+			</audio>
+
+			<br><br>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/st-beammeaboard.mp3" type="audio/mpeg">
+			</audio>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/st-consolebeeps.mp3" type="audio/mpeg">
+			</audio>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/st-interfacecomplete.mp3" type="audio/mpeg">
+			</audio>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/st-intruderalert.mp3" type="audio/mpeg">
+			</audio>
+
+			<br><br>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">			
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/sw-theme.mp3" type="audio/mpeg">
+			</audio>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/sw-badfeeling.mp3" type="audio/mpeg">
+			</audio>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/sw-darthvader.mp3" type="audio/mpeg">
+			</audio>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
+			<audio style="visibility:hidden" id="audio" controls>
+				<source src="assets/sounds/sw-r2d2.mp3" type="audio/mpeg">
+			</audio>
+
+
+	</div>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+  </body>
+</html>
