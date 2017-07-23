@@ -17,7 +17,12 @@
 	<script>
 	function play(audioId){
     	var audio = document.getElementById(audioId);
-    	audio.play();
+		if (audio.paused) {
+			console.log("audio paused")
+			audio.play();
+		} else {
+			audio.pause();
+		}
    	}
 	</script>
 
