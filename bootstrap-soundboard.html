@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <style>
+
+  </style>
+
     <meta charset="utf-8">
 
     <title>Bootstrap Soundboard</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="bootstrap.css" rel="stylesheet" type="text/css">
 
   </head>
   <body>
 	<script>
-	function play(){
-    	var audio = document.getElementById("audio");
+	function play(audioId){
+    	var audio = document.getElementById(audioId);
     	audio.play();
    	}
 	</script>
@@ -55,62 +59,67 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <br>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio1")">
+			<audio style="display:none" id="audio1">
 				<source src="assets/sounds/sw-theme.mp3" type="audio/mpeg">
 			</audio>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<button onclick="play("audio1")" type="button">Play Audio</button>
+
+
+
+
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio2")">
+			<audio style="display:none" id="audio2">
 				<source src="assets/sounds/sw-badfeeling.mp3" type="audio/mpeg">
 			</audio>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio3")">
+			<audio style="display:none" id="audio3">
 				<source src="assets/sounds/sw-darthvader.mp3" type="audio/mpeg">
 			</audio>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio4")">
+			<audio style="display:none" id="audio4">
 				<source src="assets/sounds/sw-r2d2.mp3" type="audio/mpeg">
 			</audio>
 
 			<br><br>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio5")">
+			<audio style="display:none" id="audio5">
 				<source src="assets/sounds/st-beammeaboard.mp3" type="audio/mpeg">
 			</audio>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio6")">
+			<audio style="display:none" id="audio6">
 				<source src="assets/sounds/st-consolebeeps.mp3" type="audio/mpeg">
 			</audio>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio7")">
+			<audio style="display:none" id="audio7">
 				<source src="assets/sounds/st-interfacecomplete.mp3" type="audio/mpeg">
 			</audio>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio8")">
+			<audio style="display:none" id="audio8">
 				<source src="assets/sounds/st-intruderalert.mp3" type="audio/mpeg">
 			</audio>
 
 			<br><br>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">			
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio9")">			
+			<audio style="display:none" id="audio9">
 				<source src="assets/sounds/sw-theme.mp3" type="audio/mpeg">
 			</audio>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio10")">
+			<audio style="display:none" id="audio10">
 				<source src="assets/sounds/sw-badfeeling.mp3" type="audio/mpeg">
 			</audio>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio11")">
+			<audio style="display:none" id="audio11">
 				<source src="assets/sounds/sw-darthvader.mp3" type="audio/mpeg">
 			</audio>
-<input type="button" class="btn btn-primary" value="PLAY" onclick="play()">
-			<audio style="visibility:hidden" id="audio" controls>
+<input type="button" class="btn btn-primary" value="PLAY" onclick="play("audio12")">
+			<audio style="display:none" id="audio12">
 				<source src="assets/sounds/sw-r2d2.mp3" type="audio/mpeg">
 			</audio>
 
 
 	</div>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="bootstrap.js"></script>
   </body>
 </html>
