@@ -47,9 +47,9 @@ header > div {
 
 a:link    {
     text-decoration:  none;
-    font-weight:      bold;
-    background-color: #ddd;
-    color:            blue;
+    font-weight:      normal;
+    background-color: rgb(255,105,180);
+    color:            black;
 }
 
 .logo {
@@ -72,7 +72,6 @@ a:link    {
     font-variant: normal;
     font-weight: 500;
     line-height: 26px;
-
 }
 
 .fun {
@@ -86,6 +85,12 @@ a:link    {
     text-shadow: red 0 -2px;
     font-family: courier;
     float: right;
+    padding-bottom: 15px;
+}
+
+header > .wrapper {
+    display: flex;
+    flex-flow: row wrap;
 }
 
 #kern2 {
@@ -156,6 +161,10 @@ and (min-width : 1100px) {
         width: 50%;
         padding-right: 10px;
     }
+    
+    aside > p {
+        font-size: 2rem;
+    }
 }
 
 section > div:nth-child(1) {
@@ -219,7 +228,7 @@ footer > .wrapper > img:hover ~ span {
 
 /* Cat fade-in animation */
 @-webkit-keyframes cat-anim {
-    0%	{ opacity: 0; }
+    0%  { opacity: 0; }
     100% { opacity: 1; }
 }
 
@@ -235,7 +244,7 @@ aside {
     border-top-right-radius: 3rem;
     border-bottom-left-radius: 3rem;
     font-family: sans-serif;
-    font-size: 2rem;
+    font-size: 1.1rem;
     margin: 1rem 0;
     margin-bottom: 4rem;
     padding-bottom: 60px;
@@ -243,15 +252,17 @@ aside {
     text-align: center;
 }
 
+
 aside > p {
     position: relative;
     top: -3rem;
+    line-height: 1px;
 }
 
 /* Bug properties */
 aside > p > svg {
     fill: white;
-    width: 4%;
+    width: 40px;
     height: auto;
     vertical-align: middle;
 }
