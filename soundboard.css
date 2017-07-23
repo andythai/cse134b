@@ -47,8 +47,7 @@ main > label {
 }
 
 form {
-	display: flex;
-	flex-direction: row;
+	padding-right: 40px;
 }
 
 label {
