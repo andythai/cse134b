@@ -4,16 +4,18 @@ Load time on Android phone: 2 seconds;
 */
 
 
+body {
+	padding-left: 15px;
+}
 
 main {
 	font-family: Arial;
 	background: rgb(255,255,255);
-
 }
 
 main > header {
-	font-size: 65px;
-	font-weight: bold;
+	font-size: 36px;
+	font-weight: 500;
 	color: #337ab7;
 
 }
@@ -44,7 +46,7 @@ main > label {
 }
 
 button {
-    background-color: royalblue;
+    background-color: #337ab7;
     border: none;
 	border-radius: 4px;
     color: white;
