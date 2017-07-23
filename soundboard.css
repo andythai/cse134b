@@ -4,17 +4,19 @@ Load time on Android phone: 2 seconds;
 */
 
 
+body {
+	padding-left: 15px;
+}
 
 main {
 	font-family: Arial;
 	background: rgb(255,255,255);
-
 }
 
 main > header {
-	font-size: 65px;
-	font-weight: bold;
-	color: royalblue;
+	font-size: 36px;
+	font-weight: 500;
+	color: #337ab7;
 
 }
 
@@ -23,7 +25,7 @@ main > nav {
 }
 
 main > nav > a {
-	color: royalblue;
+	color: #337ab7;
 	margin-right: 30px;
 	text-decoration: none;
 }
@@ -44,13 +46,13 @@ main > label {
 }
 
 button {
-    background-color: royalblue;
+    background-color: #337ab7;
     border: none;
-	border-radius: 6px;
+	border-radius: 4px;
     color: white;
     padding: 9px 18px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
 }
