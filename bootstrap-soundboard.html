@@ -2,7 +2,38 @@
 <html lang="en">
   <head>
   <style>
+      html,
+      body {
+        height: 100%;
+        /* no padding or margin for html/body elements */
+      }
 
+      /* wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* sets the fixed height of the footer */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
   </style>
 
     <meta charset="utf-8">
@@ -20,94 +51,96 @@
     	audio.play();
    	}
 	</script>
+	<div id="wrap">
+	  	<div class="container"> <!-- parent wrapper class -->
 
-  	<div class="container"> <!-- parent wrapper class -->
-
-    <header class="page-header">
-    <h1>Bootstrap Soundboard Site</h1>
-    </header>
-
-
-	<ul class="nav nav-tabs">
-	  <li class="nav-item">
-	    <a class="nav-link" href="soundboard-part1b.html">Plain Soundboard</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="soundboard-part2-2.html">VanillaCSS Soundboard</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link active" href="index.html">About us</a>
-	  </li>
-	</ul>
-
-	<form class="form-inline">
-	  <label class="sr-only" for="inlineFormInput">username: </label>
-	  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="username">
-
-	  <label class="sr-only" for="inlineFormInputGroup">Username</label>
-	  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-	    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="password">
-	  </div>
-
-	  <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-	    <label class="form-check-label">
-	      <input class="form-check-input" type="checkbox"> Remember me
-	    </label>
-	  </div>
-
-	  <button type="submit" class="btn btn-primary">Submit</button>
-	</form>
-	<br>
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio1')">
-	<audio id="audio1" src="assets/sounds/sw-theme.mp3" type="audio/mpeg"></audio>
+	    <header class="page-header">
+	    <h1>Bootstrap Soundboard Site</h1>
+	    </header>
 
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio2')">
-	<audio id="audio2" src="assets/sounds/sw-badfeeling.mp3" type="audio/mpeg"></audio>
+		<ul class="nav nav-tabs">
+		  <li class="nav-item">
+		    <a class="nav-link" href="soundboard-part1b.html">Plain Soundboard</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="soundboard-part2-2.html">VanillaCSS Soundboard</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link active" href="index.html">About us</a>
+		  </li>
+		</ul>
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio3')">	
-	<audio id="audio3" src="assets/sounds/sw-darthvader.mp3" type="audio/mpeg"></audio>
+		<form class="form-inline">
+		  <label class="sr-only" for="inlineFormInput">username: </label>
+		  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="username">
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio4')">	
-	<audio id="audio4" src="assets/sounds/sw-r2d2.mp3" type="audio/mpeg"></audio>
+		  <label class="sr-only" for="inlineFormInputGroup">Username</label>
+		  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+		    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="password">
+		  </div>
 
-	<br><br>
+		  <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+		    <label class="form-check-label">
+		      <input class="form-check-input" type="checkbox"> Remember me
+		    </label>
+		  </div>
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio5')">	
-	<audio id="audio5" src="assets/sounds/st-beammeaboard.mp3" type="audio/mpeg"></audio>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		<br>
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio1')">
+		<audio id="audio1" src="assets/sounds/sw-theme.mp3" type="audio/mpeg"></audio>
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio6')">
-	<audio id="audio6" src="assets/sounds/st-consolebeeps.mp3" type="audio/mpeg"></audio>
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio7')">
-	<audio id="audio7" src="assets/sounds/st-interfacecomplete.mp3" type="audio/mpeg"></audio>
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio2')">
+		<audio id="audio2" src="assets/sounds/sw-badfeeling.mp3" type="audio/mpeg"></audio>
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio8')">
-	<audio id="audio8" src="assets/sounds/st-intruderalert.mp3" type="audio/mpeg"></audio>
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio3')">	
+		<audio id="audio3" src="assets/sounds/sw-darthvader.mp3" type="audio/mpeg"></audio>
 
-	<br><br>
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio9')">		
-	<audio id="audio9" src="assets/sounds/sw-theme.mp3" type="audio/mpeg"></audio>
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio4')">	
+		<audio id="audio4" src="assets/sounds/sw-r2d2.mp3" type="audio/mpeg"></audio>
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio10')">
-	<audio id="audio10" src="assets/sounds/sw-badfeeling.mp3" type="audio/mpeg"></audio>
+		<br><br>
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio11')">
-	<audio id="audio11" src="assets/sounds/sw-darthvader.mp3" type="audio/mpeg"></audio>
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio5')">	
+		<audio id="audio5" src="assets/sounds/st-beammeaboard.mp3" type="audio/mpeg"></audio>
 
-	<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio12')">
-	<audio id="audio12" src="assets/sounds/sw-r2d2.mp3" type="audio/mpeg"></audio>
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio6')">
+		<audio id="audio6" src="assets/sounds/st-consolebeeps.mp3" type="audio/mpeg"></audio>
 
-	</div> <!-- container class -->
-	<div id="push"></div>
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio7')">
+		<audio id="audio7" src="assets/sounds/st-interfacecomplete.mp3" type="audio/mpeg"></audio>
 
-	<footer class="footer">
-	<div class="container">
-    	<p class="text-muted">Andy Thai | Magdalena Ninette | John Hurst</p>
-		<p class="text-muted">CSE 134B</p>
-		<p class="text-muted">Summer 2017</p>
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio8')">
+		<audio id="audio8" src="assets/sounds/st-intruderalert.mp3" type="audio/mpeg"></audio>
+
+		<br><br>
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio9')">		
+		<audio id="audio9" src="assets/sounds/sw-theme.mp3" type="audio/mpeg"></audio>
+
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio10')">
+		<audio id="audio10" src="assets/sounds/sw-badfeeling.mp3" type="audio/mpeg"></audio>
+
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio11')">
+		<audio id="audio11" src="assets/sounds/sw-darthvader.mp3" type="audio/mpeg"></audio>
+
+		<input type="button" class="btn btn-primary" value="PLAY" onclick="play('audio12')">
+		<audio id="audio12" src="assets/sounds/sw-r2d2.mp3" type="audio/mpeg"></audio>
+
+		</div> <!-- container class -->
+		<div id="push"></div>
+	</div> <!-- div wrap -->
+
+	<div id="footer">
+		<div class="container">
+    		<p class="text-muted">Andy Thai | Magdalena Ninette | John Hurst</p>
+		</div>
 	</div>
-    </footer>
+
+
+
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="bootstrap.js"></script>
 
