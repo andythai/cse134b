@@ -50,8 +50,12 @@ form {
 	display: inline-block;
 }
 
-input[type="checkbox"] {
+label {
 	display: block;
+}
+
+input[type="checkbox"] {
+	position: relative;
 }
 
 input[type="text"] {
