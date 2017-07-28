@@ -17,13 +17,41 @@
 			audio.pause();
 		}
    	}
+	
+	function dropdownFunc() {
+		document.getElementById("dropdownItems").classList.toggle("show");
+	}
+
+	window.onclick = function(event) {
+	  if (!event.target.matches('.dropcog')) {
+
+		var dropdowns = document.getElementsByClassName("dropdownLinks");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+		  var openDropdown = dropdowns[i];
+		  if (openDropdown.classList.contains('show')) {
+			openDropdown.classList.remove('show');
+		  }
+		}
+	  }
+	}
 	</script>
 		<main>
 		
 			<header>
 				Soundboard
-				<object id="settings" data="./gears.svg" type="image/svg+xml"></object>
+				<div class="dropdown">
+					<img src="./gears.svg" onclick="dropdownFunc()" class="dropcog"></img>
+					<div id="dropdownItems" class="dropdownLinks">
+						<a href="#">Login</a>
+						<a href="#">Sign Up</a>
+						<a href="#">Upload</a>
+						<a href="#">Swap Theme</a>
+						<a href="#">Compact Mode</a>
+					</div>
+				</div>
 			</header>
+			<br>
 			<hr>			
 			<nav>
 				<a href="https://b-b2dcd.firebaseapp.com/soundboard-part1a.html">Plain Soundboard</a> 
