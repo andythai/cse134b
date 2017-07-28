@@ -3,6 +3,29 @@ CSS File size: 1kb;
 Load time on Android phone: 2 seconds;
 */
 
+.img {
+	max-width: 100%;
+}
+
+.flex-container {
+/*	height: 30vmax; 
+	width: 30vmax; */
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	margin: auto;
+	padding: 0px;
+	flex-flow: row-wrap;
+}
+
+.flex-item {
+	display: inline-block;
+	flex-grow: 1;
+	width: 20%;
+	margin:10px 0 0 10px;
+	height: 290px;
+}
+
 
 body {
 	padding-left: 15px;
@@ -79,10 +102,10 @@ input[type="text"] {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 }
-
+/*
 .inline-block {
 	float: left;
-}
+}*/
 
 button {
     background-color: #337ab7;
@@ -97,7 +120,7 @@ button {
 }
 
 footer {
-	position: absolute;
+	position: relative;
 	right: 0;
 	left: 0;
 	bottom: 0;
