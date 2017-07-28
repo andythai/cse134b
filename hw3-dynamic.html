@@ -8,6 +8,8 @@
                 document.body.appendChild(createMain());
             };
 
+            var br = document.createElement("br");
+
             function createMain() {
                 var node = document.createElement("main");
                 node.appendChild(createHeader());
@@ -16,6 +18,7 @@
                 node.appendChild(createNavBar());
                 node.appendChild(hr);
                 node.appendChild(document.createElement("br"));
+                node.appendChild(createForm());
                 return node;
             }
 
@@ -48,6 +51,51 @@
                 anchorNode.href = href;
                 anchorNode.appendChild(document.createTextNode(text));
                 return anchorNode;
+            }
+
+            function createForm() {
+                var formNode = document.createElement("form");
+                formNode.appendChild(createBold("Email Address"));
+                formNode.appendChild(br);
+                formNode.appendChild(createInput("text", "email", "Enter Email"));
+                formNode.appendChild(br);
+                formNode.appendChild(createBold("Password"));
+                formNode.appendChild(br);
+                formNode.appendChild(createInput("text", "password", "Password"));
+                formNode.appendChild(br); formNode.appendChild(br);
+                formNode.appendChild(createLabel());
+                formNode.appendChild(br); formNode.appendChild(br);
+                formNode.appendChild(createButton());
+                formNode.appendChild(br); formNode.appendChild(br); formNode.appendChild(br);
+                return formNode;
+            }
+
+            function createBold(text) {
+                var b = document.createElement("b");
+                b.appendChild(document.createTextNode(text));
+                return b;
+            }
+
+            function createInput(type, name, value) {
+                var input = document.createElement("input");
+                input.type = type;
+                input.name = name;
+                if (value != null) {
+                    input.value = value;
+                }
+                return input;
+            }
+
+            function createLabel() {
+                var label = document.createElement("label");
+                label.appendChild(createInput("checkbox", "checkbox", null));
+                label.appendChild(document.createTextNode(" Remember Me"));
+                return label;
+            }
+
+            function createButton() {
+                var button = document.createElement("button");
+                return button;
             }
 
         </script>
