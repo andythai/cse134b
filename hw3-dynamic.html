@@ -1,6 +1,57 @@
-<DOCTYPE html>
-<body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./hw3.css"/>
+        <script>
 
+            window.onload = function() {
+                document.body.appendChild(createMain());
+            };
 
-</body>
+            function createMain() {
+                var node = document.createElement("main");
+                node.appendChild(createHeader());
+                var hr = document.createElement("hr");
+                node.appendChild(hr);
+                node.appendChild(createNavBar());
+                node.appendChild(hr);
+                node.appendChild(document.createElement("br"));
+                return node;
+            }
+
+            function createHeader() {
+                var headerNode = document.createElement("header");
+                var headerText = document.createTextNode("Soundboard");
+                headerNode.appendChild(headerText);
+                headerNode.appendChild(createObject());
+                return headerNode;
+            }
+
+            function createObject() {
+                var objectNode = document.createElement("object");
+                objectNode.id = "settings";
+                objectNode.data = "./gears.svg";
+                objectNode.type = "image/svg+xml";
+                return objectNode;
+            }
+
+            function createNavBar() {
+                var navNode = document.createElement("nav");
+                navNode.appendChild(createAnchor("https://b-b2dcd.firebaseapp.com/soundboard-part1a.html", "Plain Soundboard"));
+                navNode.appendChild(createAnchor("https://b-b2dcd.firebaseapp.com/bootstrap-soundboard.html", "Bootstrap Soundboard"));
+                navNode.appendChild(createAnchor("https://b-b2dcd.firebaseapp.com/index.html", "About Us"));
+                return navNode;
+            }
+
+            function createAnchor(href, text) {
+                var anchorNode = document.createElement("a");
+                anchorNode.href = href;
+                anchorNode.appendChild(document.createTextNode(text));
+                return anchorNode;
+            }
+
+        </script>
+    </head>
+    <body>
+    </body>
 </html>
