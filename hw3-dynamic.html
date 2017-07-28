@@ -1,5 +1,63 @@
-<DOCTYPE html>
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Markup Masters</title>
+	<link rel="stylesheet" href="./hw3.css">
+
+	<script>
+		window.onload = function () {
+  		renderSoundBoard();
+}
+
+	function renderSound(id,image,sound) {
+
+		return "<img src='assets/icons/" + image + "\'" + 
+				" class='flex-item' onclick= 'play(\'"+ id + "\') value='play'><audio id=" +
+				"\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>"
+
+
+	}
+
+	function renderSoundBoard() {
+	  /* function that takes a stringify version of the static HTML from step 4 and smashes it into the div tag with id 'soundBoard' using innerHTML*/
+
+	  	var result = "";
+
+		var images = ["swicon1.ico","han.png",
+									"darthvadericon.png","r2d2.png",
+									"enterpriseicon.png","spokicon.png",
+									"rocketicon.jpg","moonicon.png","willferrelicon.png",
+									"mustacheicon.jpg","scarfaceicon1.jpg",
+									"scarfaceicon2.jpg"];
+		var sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
+									"sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
+									"st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
+									"anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
+		var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
+					"audio11","audio12"];
+			
+
+		for (var i = 0; i < images.length; i++) {
+			if (i%4 == 0) {
+				//prepend with "<br><br>"
+				result = result + "<br><br>" + renderSound(ids[i],images[i],sounds[i]);
+			}
+			else
+				result = result + renderSound(ids[i],images[i],sounds[i]);
+		}
+
+	 	document.getElementById('soundboard').innerHTML = "<div class='flex-container'>" + result +
+	 														"</div>";
+	}
+
+</script>
+
+</head>
+
 <body>
+
+<div id="soundboard"></div>
+
 
 
 </body>
