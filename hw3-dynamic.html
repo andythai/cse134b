@@ -16,8 +16,6 @@
 
                 document.getElementByTagName("main").appendChild(newDiv);
 
-
-
             };
 
 
@@ -78,16 +76,37 @@
                 var headerNode = document.createElement("header");
                 var headerText = document.createTextNode("Soundboard");
                 headerNode.appendChild(headerText);
-                headerNode.appendChild(createObject());
+               // headerNode.appendChild(createObject());
+              //  var dropDownDiv  = document.createElement("div");
+               // dropDownDiv.setAttribute("class", "dropdown"); //<div class="dropdown">
+                headerNode.appendChild(createGearDropdown());
+
                 return headerNode;
             }
 
-            function createObject() {
-                var objectNode = document.createElement("object");
-                objectNode.id = "settings";
-                objectNode.data = "./gears.svg";
-                objectNode.type = "image/svg+xml";
-                return objectNode;
+            function createGearDropdown() {
+                var dropdown = document.createElement("div");
+                dropdown.setAttribute("class", "dropdown");
+
+                var gear = document.createElement("img");
+                gear.setAttribute("src","./gears.svg");
+                gear.setAttribute("onclick","dropdownFunc()");
+                gear.setAttribute("class","dropcog");
+
+                dropdown.appendChild(gear);// <img src="./gears.svg" onclick="dropdownFunc()" class="dropcog"></img>
+                
+                var innerDiv = document.createElement("div");
+
+                innerDiv.setAttribute("id","dropdownItems");
+                innerDiv.setAttribute("class","dropdownLinks");
+                innerDiv.appendChild(createAnchor("#","Login"));
+
+                dropdown.appendChild(innerDiv);
+
+                return dropdown;
+
+
+
             }
 
             function createNavBar() {
@@ -98,7 +117,7 @@
                 return navNode;
             }
 
-            function createAnchor(href, text) {
+            function createAnchor(href, text, f) {
                 var anchorNode = document.createElement("a");
                 anchorNode.href = href;
                 anchorNode.appendChild(document.createTextNode(text));
