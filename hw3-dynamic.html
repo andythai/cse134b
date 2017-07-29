@@ -8,7 +8,16 @@
 
             window.onload = function() {
                 document.body.appendChild(createMain());
-                renderSoundBoard();
+                var newDiv = document.createElement("div");
+                newDiv.setAttribute("id", "soundboard");  //<div id="soundboard"></div>
+    
+                document.getElementsByTagName("main")[0].appendChild(newDiv);
+                document.getElementById('soundboard').innerHTML = renderSoundBoard();
+
+                document.getElementByTagName("main").appendChild(newDiv);
+
+
+
             };
 
 
@@ -17,7 +26,6 @@
                 return "<img src='assets/icons/" + image + "\'" + 
                         " class='flex-item' onclick= 'play(\'"+ id + "\') value='play'><audio id=" +
                         "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>"
-
 
             }
 
@@ -49,8 +57,7 @@
                         result = result + renderSound(ids[i],images[i],sounds[i]);
                 }
 
-                document.getElementById('soundboard').innerHTML = "<div class='flex-container'>" + result +
-                                                                    "</div>";
+                return result;
             }
 
             var br = document.createElement("br");
@@ -146,6 +153,18 @@
         </script>
     </head>
     <body>
-    <div id="soundboard"></div>
+
+
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
