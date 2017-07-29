@@ -12,35 +12,57 @@
                 newDiv.setAttribute("id", "soundboard");  //<div id="soundboard"></div>
     
                 document.getElementsByTagName("main")[0].appendChild(newDiv);
+
                 document.getElementById('soundboard').innerHTML = renderSoundBoard();
                 document.body.appendChild(createFooter());
 
-            };
-
-
-            function renderSound(id,image,sound) {
-
-                return "<img src='assets/icons/" + image + "\'" + 
-                        " class='flex-item' onclick= 'play(\'"+ id + "\') value='play'><audio id=" +
-                        "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>"
 
             }
 
-            function renderSoundBoard() {
-              /* function that takes a stringify version of the static HTML from step 4 and smashes it into the div tag with id 'soundBoard' using innerHTML*/
+            function changeSoundboard(n) {
+                if(n==1) 
+                    document.getElementById('soundboard').innerHTML = renderSoundBoard("other");
+                else
+                    document.getElementById('soundboard').innerHTML = renderSoundBoard();
+            }
+
+            function renderSound(id,image,sound) {
+
+                var res = "<img src='assets/icons/" + image + "\'" + 
+                        " class='flex-item' onclick= 'play(\""+id+"\")' value='play'><audio id=" +
+                        "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>";
+
+                return res;
+
+            }
+
+            function renderSoundBoard(other) {
+
 
                 var result = "";
+                if (other) {
+                    var images = ["hero1.png", "hero2.png", "hero3.png", "hero4.png",
+                                  "hero5.png", "hero6.png", "hero7.png", "hero8.png", "hero9.png", 
+                                  "hero10.png", "hero11.png", "hero12.png"];
+                    var sounds = ["avengers1.mp3","avengers2.mp3","avengers3.mp3",
+                                                "avengers4.mp3","avengers5.mp3","avengers6.mp3",
+                                                "avengers7.mp3","avengers8.mp3","avengers9.mp3",
+                                                "avengers10.mp3","avengers11.mp3","avengers12.mp3"];
+                }
+                else {
 
-                var images = ["chewyicon.png","han.png",
-                                            "darthvadericon.png","r2d2.png",
-                                            "enterpriseicon.png","spokicon.png",
-                                            "rocketicon.jpg","moonicon.png","willferrelicon.png",
-                                            "mustacheicon.jpg","scarfaceicon1.jpg",
-                                            "scarfaceicon2.jpg"];
-                var sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
-                                            "sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
-                                            "st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
-                                            "anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
+                    var images = ["chewyicon.png","han.png",
+                                                "darthvadericon.png","r2d2.png",
+                                                "enterpriseicon.png","spokicon.png",
+                                                "rocketicon.jpg","moonicon.png","willferrelicon.png",
+                                                "mustacheicon.jpg","scarfaceicon1.jpg",
+                                                "scarfaceicon2.jpg"];
+                    var sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
+                                                "sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
+                                                "st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
+                                                "anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
+                }          
+
                 var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
                             "audio11","audio12"];
                     
@@ -75,9 +97,6 @@
                 var headerNode = document.createElement("header");
                 var headerText = document.createTextNode("Soundboard");
                 headerNode.appendChild(headerText);
-               // headerNode.appendChild(createObject());
-              //  var dropDownDiv  = document.createElement("div");
-               // dropDownDiv.setAttribute("class", "dropdown"); //<div class="dropdown">
                 headerNode.appendChild(createGearDropdown());
 
                 return headerNode;
@@ -103,6 +122,8 @@
                 innerDiv.appendChild(createAnchor("#","Upload"));
                 innerDiv.appendChild(createAnchor("#","Dark Theme","changeTheme('./hw3 - dark.css')"));
                 innerDiv.appendChild(createAnchor("#","Light Theme","changeTheme('./hw3.css')"));
+                innerDiv.appendChild(createAnchor("#","Marvel Soundboard","changeSoundboard(1)"));
+                innerDiv.appendChild(createAnchor("#","Movies Soundboard","changeSoundboard(2)"));
                 innerDiv.appendChild(createAnchor("#","Compact"));
 
                 dropdown.appendChild(innerDiv);
@@ -196,6 +217,16 @@
                 footer.appendChild(text3);
 
                 return footer;
+            }
+
+            function play(audioId){
+                var audio = document.getElementById(audioId);
+                if (audio.paused) {
+                    console.log("audio paused")
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
             }
 
         </script>

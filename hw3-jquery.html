@@ -18,11 +18,17 @@
 
             };
 
+            function changeSoundboard(n) {
+                if(n==1) 
+                    $('soundboard').HTML(renderSoundBoard("other"));
+                else
+                    $('soundboard').HTML(renderSoundBoard());
+            }
 
             function renderSound(id,image,sound) {
 
                 return "<img src='assets/icons/" + image + "\'" + 
-                        " class='flex-item' onclick= 'play(\'"+ id + "\') value='play'><audio id=" +
+                        " class='flex-item' onclick= 'play(\""+ id + "\")' value='play'><audio id=" +
                         "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>"
 
             }
@@ -99,6 +105,8 @@
                 $(innerDiv).append(createAnchor("#","Upload"));
                 $(innerDiv).append(createAnchor("#","Dark Theme","changeTheme('./hw3 - dark.css')"));
                 $(innerDiv).append(createAnchor("#","Light Theme","changeTheme('./hw3.css')"));
+                $(innerDiv).append(createAnchor("#","Marvel Soundboard","changeSoundboard(1)"));
+                $(innerDiv).append(createAnchor("#","Movies Soundboard","changeSoundboard(2)"));
                 $(innerDiv).append(createAnchor("#","Compact"));
 
                 $(dropdown).append(innerDiv);
@@ -190,6 +198,15 @@
                 return footer;
             }
 
+            function play(audioId){
+                var audio = document.getElementById(audioId);
+                if (audio.paused) {
+                    console.log("audio paused")
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            }
 
 	</script>
 </head>
