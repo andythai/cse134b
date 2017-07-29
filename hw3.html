@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Markup Masters</title>
-	<link rel="stylesheet" href="./hw3.css">
+	<link id="css-theme" rel="stylesheet" href="./hw3.css">
 	</head>
 	
 	<body>
@@ -16,6 +16,9 @@
 		} else {
 			audio.pause();
 		}
+   	}
+   	function changeTheme(theme) {
+   		document.getElementById("css-theme").href=theme;
    	}
 	
 	function dropdownFunc() {
@@ -46,7 +49,8 @@
 						<a href="#">Login</a>
 						<a href="#">Sign Up</a>
 						<a href="#">Upload</a>
-						<a href="#">Dark Theme</a> <!-- Dark Theme -->
+						<a href="#" onclick="changeTheme('./hw3 - dark.css')">Dark Theme</a> <!-- Dark Theme -->
+						<a href="#" onclick="changeTheme('./hw3.css')">Light Theme</a>
 						<a href="#">Compact Mode</a>
 					</div>
 				</div>
@@ -79,7 +83,7 @@
 			<br>
 
 			<div class="flex-container">
-			<img src="assets/icons/swicon1.ico" class="flex-item" onclick= "play('audio1')" value="play">
+			<img src="assets/icons/deathstaricon.jpg" class="flex-item" onclick= "play('audio1')" value="play">
 			<audio id="audio1" src="assets/sounds/sw-theme.mp3" type="audio/mpeg"></audio>
 
 			<img src="assets/icons/han.png" class="flex-item" onclick= "play('audio2')" value="play">
