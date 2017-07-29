@@ -1,64 +1,151 @@
 <!DOCTYPE html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Markup Masters</title>
-	<link rel="stylesheet" href="./hw3.css">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Markup Masters</title>
+        <link rel="stylesheet" href="./hw3.css"/>
+        <script>
 
-	<script>
-		window.onload = function () {
-  		renderSoundBoard();
-}
-
-	function renderSound(id,image,sound) {
-
-		return "<img src='assets/icons/" + image + "\'" + 
-				" class='flex-item' onclick= 'play(\'"+ id + "\') value='play'><audio id=" +
-				"\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>"
+            window.onload = function() {
+                document.body.appendChild(createMain());
+                renderSoundBoard();
+            };
 
 
-	}
+            function renderSound(id,image,sound) {
 
-	function renderSoundBoard() {
-	  /* function that takes a stringify version of the static HTML from step 4 and smashes it into the div tag with id 'soundBoard' using innerHTML*/
-
-	  	var result = "";
-
-		var images = ["swicon1.ico","han.png",
-									"darthvadericon.png","r2d2.png",
-									"enterpriseicon.png","spokicon.png",
-									"rocketicon.jpg","moonicon.png","willferrelicon.png",
-									"mustacheicon.jpg","scarfaceicon1.jpg",
-									"scarfaceicon2.jpg"];
-		var sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
-									"sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
-									"st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
-									"anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
-		var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
-					"audio11","audio12"];
-			
-
-		for (var i = 0; i < images.length; i++) {
-			if (i%4 == 0) {
-				//prepend with "<br><br>"
-				result = result + "<br><br>" + renderSound(ids[i],images[i],sounds[i]);
-			}
-			else
-				result = result + renderSound(ids[i],images[i],sounds[i]);
-		}
-
-	 	document.getElementById('soundboard').innerHTML = "<div class='flex-container'>" + result +
-	 														"</div>";
-	}
-
-</script>
-
-</head>
-
-<body>
-
-<div id="soundboard"></div>
+                return "<img src='assets/icons/" + image + "\'" + 
+                        " class='flex-item' onclick= 'play(\'"+ id + "\') value='play'><audio id=" +
+                        "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>"
 
 
+            }
 
-</body>
+            function renderSoundBoard() {
+              /* function that takes a stringify version of the static HTML from step 4 and smashes it into the div tag with id 'soundBoard' using innerHTML*/
+
+                var result = "";
+
+                var images = ["swicon1.ico","han.png",
+                                            "darthvadericon.png","r2d2.png",
+                                            "enterpriseicon.png","spokicon.png",
+                                            "rocketicon.jpg","moonicon.png","willferrelicon.png",
+                                            "mustacheicon.jpg","scarfaceicon1.jpg",
+                                            "scarfaceicon2.jpg"];
+                var sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
+                                            "sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
+                                            "st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
+                                            "anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
+                var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
+                            "audio11","audio12"];
+                    
+
+                for (var i = 0; i < images.length; i++) {
+                    if (i%4 == 0) {
+                        //prepend with "<br><br>"
+                        result = result + "<br><br>" + renderSound(ids[i],images[i],sounds[i]);
+                    }
+                    else
+                        result = result + renderSound(ids[i],images[i],sounds[i]);
+                }
+
+                document.getElementById('soundboard').innerHTML = "<div class='flex-container'>" + result +
+                                                                    "</div>";
+            }
+
+            var br = document.createElement("br");
+
+            function createMain() {
+                var node = document.createElement("main");
+                node.appendChild(createHeader());
+                var hr = document.createElement("hr");
+                node.appendChild(hr);
+                node.appendChild(createNavBar());
+                node.appendChild(hr);
+                node.appendChild(document.createElement("br"));
+                node.appendChild(createForm());
+                return node;
+            }
+
+            function createHeader() {
+                var headerNode = document.createElement("header");
+                var headerText = document.createTextNode("Soundboard");
+                headerNode.appendChild(headerText);
+                headerNode.appendChild(createObject());
+                return headerNode;
+            }
+
+            function createObject() {
+                var objectNode = document.createElement("object");
+                objectNode.id = "settings";
+                objectNode.data = "./gears.svg";
+                objectNode.type = "image/svg+xml";
+                return objectNode;
+            }
+
+            function createNavBar() {
+                var navNode = document.createElement("nav");
+                navNode.appendChild(createAnchor("https://b-b2dcd.firebaseapp.com/soundboard-part1a.html", "Plain Soundboard"));
+                navNode.appendChild(createAnchor("https://b-b2dcd.firebaseapp.com/bootstrap-soundboard.html", "Bootstrap Soundboard"));
+                navNode.appendChild(createAnchor("https://b-b2dcd.firebaseapp.com/index.html", "About Us"));
+                return navNode;
+            }
+
+            function createAnchor(href, text) {
+                var anchorNode = document.createElement("a");
+                anchorNode.href = href;
+                anchorNode.appendChild(document.createTextNode(text));
+                return anchorNode;
+            }
+
+            function createForm() {
+                var formNode = document.createElement("form");
+                formNode.appendChild(createBold("Email Address"));
+                formNode.appendChild(br);
+                formNode.appendChild(createInput("text", "email", "Enter Email"));
+                formNode.appendChild(br);
+                formNode.appendChild(createBold("Password"));
+                formNode.appendChild(br);
+                formNode.appendChild(createInput("text", "password", "Password"));
+                formNode.appendChild(br); formNode.appendChild(br);
+                formNode.appendChild(createLabel());
+                formNode.appendChild(br); formNode.appendChild(br);
+                formNode.appendChild(createButton());
+                formNode.appendChild(br); formNode.appendChild(br); formNode.appendChild(br);
+                return formNode;
+            }
+
+            function createBold(text) {
+                var b = document.createElement("b");
+                b.appendChild(document.createTextNode(text));
+                return b;
+            }
+
+            function createInput(type, name, value) {
+                var input = document.createElement("input");
+                input.type = type;
+                input.name = name;
+                if (value != null) {
+                    input.value = value;
+                }
+                return input;
+            }
+
+            function createLabel() {
+                var label = document.createElement("label");
+                label.appendChild(createInput("checkbox", "checkbox", null));
+                label.appendChild(document.createTextNode(" Remember Me"));
+                return label;
+            }
+
+            function createButton() {
+                var button = document.createElement("button");
+                return button;
+            }
+
+        </script>
+    </head>
+    <body>
+    <div id="soundboard"></div>
+    </body>
 </html>
