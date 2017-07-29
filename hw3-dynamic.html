@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Markup Masters</title>
-        <link rel="stylesheet" href="./hw3.css"/>
+        <link id="css-theme" rel="stylesheet" href="./hw3.css"/>
         <script>
 
             window.onload = function() {
@@ -13,8 +13,7 @@
     
                 document.getElementsByTagName("main")[0].appendChild(newDiv);
                 document.getElementById('soundboard').innerHTML = renderSoundBoard();
-
-                document.getElementByTagName("main").appendChild(newDiv);
+                document.body.appendChild(createFooter());
 
             };
 
@@ -32,7 +31,7 @@
 
                 var result = "";
 
-                var images = ["swicon1.ico","han.png",
+                var images = ["chewyicon.png","han.png",
                                             "darthvadericon.png","r2d2.png",
                                             "enterpriseicon.png","spokicon.png",
                                             "rocketicon.jpg","moonicon.png","willferrelicon.png",
@@ -100,12 +99,15 @@
                 innerDiv.setAttribute("id","dropdownItems");
                 innerDiv.setAttribute("class","dropdownLinks");
                 innerDiv.appendChild(createAnchor("#","Login"));
+                innerDiv.appendChild(createAnchor("#","Sign Up"));
+                innerDiv.appendChild(createAnchor("#","Upload"));
+                innerDiv.appendChild(createAnchor("#","Dark Theme","changeTheme('./hw3 - dark.css')"));
+                innerDiv.appendChild(createAnchor("#","Light Theme","changeTheme('./hw3.css')"));
+                innerDiv.appendChild(createAnchor("#","Compact"));
 
                 dropdown.appendChild(innerDiv);
 
                 return dropdown;
-
-
 
             }
 
@@ -121,6 +123,11 @@
                 var anchorNode = document.createElement("a");
                 anchorNode.href = href;
                 anchorNode.appendChild(document.createTextNode(text));
+
+                if (f) {
+                    anchorNode.setAttribute("onclick",f);
+
+                }
                 return anchorNode;
             }
 
@@ -167,6 +174,28 @@
             function createButton() {
                 var button = document.createElement("button");
                 return button;
+            }
+
+            function dropdownFunc() {
+                document.getElementById("dropdownItems").classList.toggle("show");
+            }   
+
+            function changeTheme(theme) {
+                document.getElementById("css-theme").href=theme;
+            }
+
+            function createFooter() {
+                var footer  = document.createElement("footer");
+                var text1 = document.createTextNode("Magdalena Ninette | Andy Thai | John Hurst");
+                footer.appendChild(text1);
+                footer.appendChild(document.createElement("br"));
+                var text2 = document.createTextNode("CSE 134B");
+                footer.appendChild(text2);
+                footer.appendChild(document.createElement("br"));
+                var text3 = document.createTextNode("Summer 2017");
+                footer.appendChild(text3);
+
+                return footer;
             }
 
         </script>
