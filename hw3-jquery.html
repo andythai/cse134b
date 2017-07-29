@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Markup Masters</title>
+    <link id="css-theme" rel="stylesheet" href="./hw3.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+
+            window.onload = function() {
+                $("body").append(createMain());
+                var newDiv = document.createElement("div");
+                $(newDiv).attr("id", "soundboard");  //<div id="soundboard"></div>
+    
+                $("main").append(newDiv);
+                $('#soundboard').html(renderSoundBoard());
+                $("body").append(createFooter());
+
+            };
+
+
+            function renderSound(id,image,sound) {
+
+                return "<img src='assets/icons/" + image + "\'" + 
+                        " class='flex-item' onclick= 'play(\'"+ id + "\') value='play'><audio id=" +
+                        "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>"
+
+            }
+
+            function renderSoundBoard() {
+                var result = "";
+
+                var images = ["chewyicon.png","han.png",
+                                            "darthvadericon.png","r2d2.png",
+                                            "enterpriseicon.png","spokicon.png",
+                                            "rocketicon.jpg","moonicon.png","willferrelicon.png",
+                                            "mustacheicon.jpg","scarfaceicon1.jpg",
+                                            "scarfaceicon2.jpg"];
+                var sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
+                                            "sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
+                                            "st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
+                                            "anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
+                var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
+                            "audio11","audio12"];
+                    
+
+                for (var i = 0; i < images.length; i++) {
+                    if (i%4 == 0) {
+                        //prepend with "<br><br>"
+                        result = result + "<br><br>" + renderSound(ids[i],images[i],sounds[i]);
+                    }
+                    else
+                        result = result + renderSound(ids[i],images[i],sounds[i]);
+                }
+
+                return result;
+            }
+
+            var br = document.createElement("br");
+
+            function createMain() {
+                var node = document.createElement("main");
+                $(node).append(createHeader());
+                var hr = document.createElement("hr");
+                $(node).append(hr);
+                $(node).append(createNavBar());
+                $(node).append(hr);
+                $(node).append(document.createElement("br"));
+                $(node).append(createForm());
+                return node;
+            }
+
+            function createHeader() {
+                var headerNode = document.createElement("header");
+                var headerText = document.createTextNode("Soundboard");
+                $(headerNode).append(headerText);
+                $(headerNode).append(createGearDropdown());
+
+                return headerNode;
+            }
+
+            function createGearDropdown() {
+                var dropdown = document.createElement("div");
+                $(dropdown).attr("class", "dropdown");
+
+                var gear = document.createElement("img");
+                $(gear).attr("src","./gears.svg");
+                $(gear).attr("onclick","dropdownFunc()");
+                $(gear).attr("class","dropcog");
+
+                $(dropdown).append(gear);// <img src="./gears.svg" onclick="dropdownFunc()" class="dropcog"></img>
+                
+                var innerDiv = document.createElement("div");
+
+                $(innerDiv).attr("id","dropdownItems");
+                $(innerDiv).attr("class","dropdownLinks");
+                $(innerDiv).append(createAnchor("#","Login"));
+                $(innerDiv).append(createAnchor("#","Sign Up"));
+                $(innerDiv).append(createAnchor("#","Upload"));
+                $(innerDiv).append(createAnchor("#","Dark Theme","changeTheme('./hw3 - dark.css')"));
+                $(innerDiv).append(createAnchor("#","Light Theme","changeTheme('./hw3.css')"));
+                $(innerDiv).append(createAnchor("#","Compact"));
+
+                $(dropdown).append(innerDiv);
+
+                return dropdown;
+
+            }
+
+            function createNavBar() {
+                var navNode = document.createElement("nav");
+                $(navNode).append(createAnchor("https://b-b2dcd.firebaseapp.com/soundboard-part1a.html", "Plain Soundboard"));
+                $(navNode).append(createAnchor("https://b-b2dcd.firebaseapp.com/bootstrap-soundboard.html", "Bootstrap Soundboard"));
+                $(navNode).append(createAnchor("https://b-b2dcd.firebaseapp.com/index.html", "About Us"));
+                return navNode;
+            }
+
+            function createAnchor(href, text, f) {
+                var anchorNode = document.createElement("a");
+                $(anchorNode).href = href;
+                $(anchorNode).append(document.createTextNode(text));
+
+                if (f) 
+                	$(anchorNode).attr("onclick",f);
+                
+                return anchorNode;
+            }
+
+            function createForm() {
+                var formNode = document.createElement("form");
+                $(formNode).append(createBold("Email Address"));
+                $(formNode).append(br);
+                $(formNode).append(createInput("text", "email", "Enter Email"));
+                $(formNode).append(br);
+                $(formNode).append(createBold("Password"));
+                $(formNode).append(br);
+                $(formNode).append(createInput("text", "password", "Password"));
+                $(formNode).append(br); $(formNode).append(br);
+                $(formNode).append(createLabel());
+                $(formNode).append(br); $(formNode).append(br);
+                $(formNode).append(createButton());
+                $(formNode).append(br); $(formNode).append(br); $(formNode).append(br);
+                return formNode;
+            }
+
+            function createBold(text) {
+                var b = document.createElement("b");
+                $(b).append(text);
+                return b;
+            }
+
+            function createInput(type, name, value) {
+                var input = document.createElement("input");
+                $(input).attr("type", type);
+                $(input).attr("name", name);
+                if (value) 
+                	$(input).attr("value", value);
+                
+                return input;
+            }
+
+            function createLabel() {
+                var label = document.createElement("label");
+                $(label).append(createInput("checkbox", "checkbox", null));
+                $(label).append(document.createTextNode(" Remember Me"));
+                return label;
+            }
+
+            function createButton() {
+                var button = document.createElement("button");
+                return button;
+            }
+
+            function dropdownFunc() {
+                $("dropdownItems").classList.toggle("show");
+            }   
+
+            function changeTheme(theme) {
+                $("css-theme").attr("href", theme);
+            }
+
+            function createFooter() {
+                var footer  = document.createElement("footer");
+                $(footer).append("Magdalena Ninette | Andy Thai | John Hurst");
+                $(footer).append("<br>");
+                $(footer).append("CSE 134B");
+                $(footer).append("<br>");
+                $(footer).append("Summer 2017");
+
+                return footer;
+            }
+
+
+	</script>
+</head>
+<body>
+</body>
+</html>
+
