@@ -20,9 +20,9 @@
 
             function changeSoundboard(n) {
                 if(n==1) 
-                    $('soundboard').HTML(renderSoundBoard("other"));
+                    $('#soundboard').html(renderSoundBoard("other"));
                 else
-                    $('soundboard').HTML(renderSoundBoard());
+                    $('#soundboard').html(renderSoundBoard());
             }
 
             function renderSound(id,image,sound) {
@@ -33,19 +33,32 @@
 
             }
 
-            function renderSoundBoard() {
-                var result = "";
+            function renderSoundBoard(other) {
 
-                var images = ["chewyicon.png","han.png",
-                                            "darthvadericon.png","r2d2.png",
-                                            "enterpriseicon.png","spokicon.png",
-                                            "rocketicon.jpg","moonicon.png","willferrelicon.png",
-                                            "mustacheicon.jpg","scarfaceicon1.jpg",
-                                            "scarfaceicon2.jpg"];
-                var sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
-                                            "sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
-                                            "st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
-                                            "anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
+                var result = "";
+                if (other) {
+                    var images = ["hero1.png", "hero2.png", "hero3.png", "hero4.png",
+                                  "hero5.png", "hero6.png", "hero7.png", "hero8.png", "hero9.png", 
+                                  "hero10.png", "hero11.png", "hero12.png"];
+                    var sounds = ["avengers1.mp3","avengers2.mp3","avengers3.mp3",
+                                                "avengers4.mp3","avengers5.mp3","avengers6.mp3",
+                                                "avengers7.mp3","avengers8.mp3","avengers9.mp3",
+                                                "avengers10.mp3","avengers11.mp3","avengers12.mp3"];
+                }
+                else {
+
+                    var images = ["chewyicon.png","han.png",
+                                                "darthvadericon.png","r2d2.png",
+                                                "enterpriseicon.png","spokicon.png",
+                                                "rocketicon.jpg","moonicon.png","willferrelicon.png",
+                                                "mustacheicon.jpg","scarfaceicon1.jpg",
+                                                "scarfaceicon2.jpg"];
+                    var sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
+                                                "sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
+                                                "st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
+                                                "anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
+                }          
+
                 var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
                             "audio11","audio12"];
                     
@@ -103,9 +116,10 @@
                 $(innerDiv).append(createAnchor("#","Login"));
                 $(innerDiv).append(createAnchor("#","Sign Up"));
                 $(innerDiv).append(createAnchor("#","Upload"));
-                $(innerDiv).append(createAnchor("#","Dark Theme","changeTheme('./hw3 - dark.css')"));
+                $(innerDiv).append(createAnchor("#","Dark Theme","changeTheme('./hw3-dark.css')"));
+
                 $(innerDiv).append(createAnchor("#","Light Theme","changeTheme('./hw3.css')"));
-                $(innerDiv).append(createAnchor("#","Marvel Soundboard","changeSoundboard(1)"));
+                $(innerDiv).append(createAnchor("#","Superhero Soundboard","changeSoundboard(1)"));
                 $(innerDiv).append(createAnchor("#","Movies Soundboard","changeSoundboard(2)"));
                 $(innerDiv).append(createAnchor("#","Compact"));
 
@@ -185,7 +199,7 @@
             }   
 
             function changeTheme(theme) {
-                $("css-theme").attr("href", theme);
+                $("#css-theme").attr("href", theme);
             }
 
             function createFooter() {
