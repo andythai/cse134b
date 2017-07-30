@@ -1,0 +1,18 @@
+{
+  "name": "Soundboard",
+  "sounds": [
+    { "name": "audio1", "image": "assets/icons/chewyicon.png", "audio": "assets/sounds/sw-theme.mp3 "}, 
+    { "name": "audio2", "image": "assets/icons/han.png", "audio": "assets/sounds/sw-badfeeling.mp3 "},
+    { "name": "audio3", "image": "assets/icons/darthvadericon.png", "audio": "assets/sounds/sw-darthvader.mp3 "},
+    { "name": "audio4", "image": "assets/icons/r2d2.png", "audio": "assets/sounds/sw-r2d2.mp3 "},
+    { "name": "audio5", "image": "assets/icons/enterpriseicon.png", "audio": "assets/sounds/st-beammeaboard.mp3 "},
+    { "name": "audio6", "image": "assets/icons/spokicon.png", "audio": "assets/sounds/st-consolebeeps.mp3 "},
+    { "name": "audio7", "image": "assets/icons/rocketicon.jpg", "audio": "assets/sounds/st-interfacecomplete.mp3 "},
+    { "name": "audio8", "image": "assets/icons/moonicon.png", "audio": "assets/sounds/st-intruderalert.mp3 "},
+    { "name": "audio9", "image": "assets/icons/willferrelicon.png", "audio": "assets/sounds/anchorman1.mp3 "},
+    { "name": "audio10", "image": "assets/icons/mustacheicon.jpg", "audio": "assets/sounds/anchorman2.mp3 "},
+    { "name": "audio11", "image": "assets/icons/scarfaceicon1.jpg", "audio": "assets/sounds/scarface1.mp3 "},
+    { "name": "audio12", "image": "assets/icons/scarfaceicon2.jpg", "audio": "assets/sounds/scarface2.mp3 "}
+  ]
+}
+
