@@ -262,7 +262,7 @@
              
                 if (xhr)
                  { 
-                   xhr.open("GET","packet.json",true);
+                   xhr.open("GET","./packet.json",true);
                   xhr.onreadystatechange = function(){handleResponse(xhr);};
                   xhr.send(null);
                  }
