@@ -18,49 +18,90 @@
 
             };
 
-            function changeSoundboard(n) {
-                if(n==1) 
-                    $('soundboard').HTML(renderSoundBoard("other"));
-                else
-                    $('soundboard').HTML(renderSoundBoard());
-            }
+			var compact = false;
+			var soundTheme = 2;
 
-            function renderSound(id,image,sound) {
+			function changeSoundboardOnClick(event) {
+				changeSoundboard(event.data.param);
+			}
 
-                return "<img src='assets/icons/" + image + "\'" + 
-                        " class='flex-item' onclick= 'play(\""+ id + "\")' value='play'><audio id=" +
-                        "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>"
+			function changeSoundboard(n) {
+				console.log(n);
+				if (n == null) {
+					n = soundTheme;
+					compact = !compact;
+				} else {
+					soundTheme = n;
+				}
+				console.log(n);
+				console.log(compact);
+				if(n==1) {
+					$('#soundboard').html(renderSoundBoard(true, compact));
+				}
+				else {
+					$('#soundboard').html(renderSoundBoard(false, compact));
+				}
+			}
 
-            }
+			function renderSound(id,image,sound,name,compact) {
+				console.log("Render Sound Called");
+				var res;
+				if (!compact) {
+					res = "<img src='assets/icons/" + image + "\'" +
+							" class='flex-item' onclick= 'play(\""+id+"\")' value='play'><audio id=" +
+							"\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>";
+				} else {
+					res = "<a class='dropcogalt'' onclick= 'play(\"" + id + "\")'>" + name + "</a><audio id='" + id + "' src='assets/sounds/" +
+							sound + "' type = 'audio/mpeg'></audio><br/>";
+				}
+				return res;
+			}
 
-            function renderSoundBoard() {
-                var result = "";
+			function renderSoundBoard(other, compact) {
+				var result = "";
+				var images;
+				var sounds;
+				var soundNames;
+				if (other) {
+					images = ["hero1.png", "hero2.png", "hero3.png", "hero4.png",
+						"hero5.png", "hero6.png", "hero7.png", "hero8.png", "hero9.png",
+						"hero10.png", "hero11.png", "hero12.png"];
+					sounds = ["avengers1.mp3","avengers2.mp3","avengers3.mp3",
+						"avengers4.mp3","avengers5.mp3","avengers6.mp3",
+						"avengers7.mp3","avengers8.mp3","avengers9.mp3",
+						"avengers10.mp3","avengers11.mp3","avengers12.mp3"];
+					soundNames = ["Captain America", "Iron Man", "Thor", "Black Widow", "Nick Fury",
+						"The Incredible Hulk", "The Flash", "Green Lantern", "Wonder Woman", "Batman",
+						"Superman", "Aquaman"];
+				}
+				else {
 
-                var images = ["chewyicon.png","han.png",
-                                            "darthvadericon.png","r2d2.png",
-                                            "enterpriseicon.png","spokicon.png",
-                                            "rocketicon.jpg","moonicon.png","willferrelicon.png",
-                                            "mustacheicon.jpg","scarfaceicon1.jpg",
-                                            "scarfaceicon2.jpg"];
-                var sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
-                                            "sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
-                                            "st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
-                                            "anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
-                var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
-                            "audio11","audio12"];
-                    
+					images = ["chewyicon.png","han.png",
+						"darthvadericon.png","r2d2.png",
+						"enterpriseicon.png","spokicon.png",
+						"rocketicon.jpg","moonicon.png","willferrelicon.png",
+						"mustacheicon.jpg","scarfaceicon1.jpg",
+						"scarfaceicon2.jpg"];
+					sounds = ["sw-theme.mp3","sw-badfeeling.mp3","sw-darthvader.mp3",
+						"sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
+						"st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
+						"anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
+					soundNames = ["Chewbacca", "Han Solo", "Darth Varder", "R2D2", "Starship Enterprise",
+						"Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
+						"Scarface"];
+				}
 
-                for (var i = 0; i < images.length; i++) {
-                    if (i%4 == 0) {
-                        //prepend with "<br><br>"
-                        result = result + "<br><br>" + renderSound(ids[i],images[i],sounds[i]);
-                    }
-                    else
-                        result = result + renderSound(ids[i],images[i],sounds[i]);
-                }
+				var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
+					"audio11","audio12"];
 
-                return result;
-            }
+				for (var i = 0; i < images.length; i++) {
+					if (i%4 == 0)
+						result = result + "<br><br>" + renderSound(ids[i],images[i],sounds[i], soundNames[i], compact);
+					else
+						result = result + renderSound(ids[i],images[i],sounds[i], soundNames[i], compact);
+				}
+				return result;
+			}
 
             var br = document.createElement("br");
 
@@ -100,14 +141,14 @@
 
                 $(innerDiv).attr("id","dropdownItems");
                 $(innerDiv).attr("class","dropdownLinks");
-                $(innerDiv).append(createAnchor("#","Login"));
-                $(innerDiv).append(createAnchor("#","Sign Up"));
-                $(innerDiv).append(createAnchor("#","Upload"));
-                $(innerDiv).append(createAnchor("#","Dark Theme","changeTheme('./hw3 - dark.css')"));
-                $(innerDiv).append(createAnchor("#","Light Theme","changeTheme('./hw3.css')"));
-                $(innerDiv).append(createAnchor("#","Marvel Soundboard","changeSoundboard(1)"));
-                $(innerDiv).append(createAnchor("#","Movies Soundboard","changeSoundboard(2)"));
-                $(innerDiv).append(createAnchor("#","Compact"));
+                $(innerDiv).append(createAnchor("#","Login", null, null));
+                $(innerDiv).append(createAnchor("#","Sign Up", null, null));
+                $(innerDiv).append(createAnchor("#","Upload", null, null));
+                $(innerDiv).append(createAnchor("#","Dark Theme",changeThemeOnClick, './hw3 - dark.css'));
+                $(innerDiv).append(createAnchor("#","Light Theme",changeThemeOnClick, './hw3.css'));
+                $(innerDiv).append(createAnchor("#","Marvel Soundboard",changeSoundboardOnClick, 1));
+                $(innerDiv).append(createAnchor("#","Movies Soundboard",changeSoundboardOnClick, 2));
+                $(innerDiv).append(createAnchor("#","Compact",changeSoundboardOnClick, null));
 
                 $(dropdown).append(innerDiv);
 
@@ -123,13 +164,13 @@
                 return navNode;
             }
 
-            function createAnchor(href, text, f) {
+            function createAnchor(href, text, f, param) {
                 var anchorNode = document.createElement("a");
                 $(anchorNode).href = href;
                 $(anchorNode).append(document.createTextNode(text));
-
-                if (f) 
-                	$(anchorNode).attr("onclick",f);
+				if (f != null) {
+					$(anchorNode).click({param: param}, f);
+				}
                 
                 return anchorNode;
             }
@@ -182,7 +223,11 @@
 
             function dropdownFunc() {
                 document.getElementById("dropdownItems").classList.toggle("show");
-            }   
+            }
+
+            function changeThemeOnClick(event) {
+				changeTheme(event.data.param);
+			}
 
             function changeTheme(theme) {
                 $("css-theme").attr("href", theme);
