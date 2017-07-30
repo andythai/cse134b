@@ -15,7 +15,7 @@ Load time on Android phone: 2 seconds;
 	align-items: stretch;
 	margin: auto;
 	padding: 0px;
-	flex-flow: row-wrap;
+	flex-flow: row wrap;
 }
 
 .flex-item {
