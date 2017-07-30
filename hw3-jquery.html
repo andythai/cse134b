@@ -16,6 +16,13 @@
                 $('#soundboard').html(renderSoundBoard());
                 $("body").append(createFooter());
 
+                $.ajax({url: "./packet.json", 
+                        dataType:'json',
+                        success: function(result){
+                    var soundboardObj = JSON.parse(result);
+                    $("#soundboard").html(renderMoviesSoundBoardAjax(soundboard));
+                }});
+
             };
 
 			var compact = false;
@@ -55,6 +62,25 @@
 							sound + "' type = 'audio/mpeg'></audio><br/>";
 				}
 				return res;
+			}
+
+			function renderMoviesSoundBoardAjax(soundboard) {
+				var name = soundboard.name;
+				var sounds = soundboard.sounds;
+				var soundNames = ["Chewbacca", "Han Solo", "Darth Varder", "R2D2", "Starship Enterprise",
+					"Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
+					"Scarface"];
+
+				for (var i = 0; i < sounds.length; i++) {
+					if (i%4 == 0)
+						result = result + "<br><br>" + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
+					else
+						result = result + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
+				}
+
+				return result;
+
+
 			}
 
 			function renderSoundBoard(other, compact) {
@@ -230,7 +256,7 @@
 			}
 
             function changeTheme(theme) {
-                $("css-theme").attr("href", theme);
+                $("#css-theme").attr("href", theme);
             }
 
             function createFooter() {
@@ -253,6 +279,8 @@
                     audio.pause();
                 }
             }
+
+
 
 	</script>
 </head>

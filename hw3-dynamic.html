@@ -6,6 +6,7 @@
         <link id="css-theme" rel="stylesheet" href="./hw3.css"/>
         <script>
 
+
             window.onload = function() {
                 document.body.appendChild(createMain());
                 var newDiv = document.createElement("div");
@@ -15,6 +16,7 @@
 
                 document.getElementById('soundboard').innerHTML = renderSoundBoard();
                 document.body.appendChild(createFooter());
+                sendRequest();
             };
 
             var compact = false;
@@ -49,6 +51,25 @@
                             sound + "' type = 'audio/mpeg'></audio><br/>";
                 }
                 return res;
+            }
+
+            function renderMoviesSoundBoardAjax(soundboard) {
+                var name = soundboard.name;
+                var sounds = soundboard.sounds;
+                var soundNames = ["Chewbacca", "Han Solo", "Darth Varder", "R2D2", "Starship Enterprise",
+                        "Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
+                        "Scarface"];
+
+                for (var i = 0; i < sounds.length; i++) {
+                    if (i%4 == 0)
+                        result = result + "<br><br>" + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
+                    else
+                        result = result + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
+                }
+
+                return result;
+
+
             }
 
             function renderSoundBoard(other, compact) {
@@ -139,9 +160,9 @@
                 innerDiv.appendChild(createAnchor("#","Login"));
                 innerDiv.appendChild(createAnchor("#","Sign Up"));
                 innerDiv.appendChild(createAnchor("#","Upload"));
-                innerDiv.appendChild(createAnchor("#","Dark Theme","changeTheme('./hw3 - dark.css')"));
+                innerDiv.appendChild(createAnchor("#","Dark Theme","changeTheme('./hw3-dark.css')"));
                 innerDiv.appendChild(createAnchor("#","Light Theme","changeTheme('./hw3.css')"));
-                innerDiv.appendChild(createAnchor("#","Marvel Soundboard","changeSoundboard(1)"));
+                innerDiv.appendChild(createAnchor("#","Superhero Soundboard","changeSoundboard(1)"));
                 innerDiv.appendChild(createAnchor("#","Movies Soundboard","changeSoundboard(2)"));
                 innerDiv.appendChild(createAnchor("#","Compact","changeSoundboard(null)"));
 
@@ -248,6 +269,41 @@
                     audio.play();
                 } else {
                     audio.pause();
+                }
+            }
+
+            function createXHR()
+            {
+               try { return new XMLHttpRequest(); } catch(e) {}
+               try { return new ActiveXObject("Msxml2.XMLHTTP.6.0"); } catch (e) {}
+               try { return new ActiveXObject("Msxml2.XMLHTTP.3.0"); } catch (e) {}
+               try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {}
+               try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {}
+               
+               alert("XMLHttpRequest not supported");   
+               return null;
+            }
+ 
+            function sendRequest()
+            {
+                var xhr = createXHR();
+             
+                if (xhr)
+                 {  //address?
+                   xhr.open("GET","./packet.json",true);
+                  xhr.onreadystatechange = function(){handleResponse(xhr);};
+                  xhr.send();
+                 }
+            }
+             
+            function handleResponse(xhr)
+            {
+              if (xhr.readyState == 4  && xhr.status == 200)
+                {
+                 var parsedResponse = xhr.responseXML;
+                 var soundboardObj = JSON.parse(xhr.responseText);
+
+                 document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax(soundboard);
                 }
             }
 

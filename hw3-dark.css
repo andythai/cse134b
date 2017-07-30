@@ -3,6 +3,8 @@ CSS File size: 1kb;
 Load time on Android phone: 2 seconds;
 */
 
+
+
 .img {
 	max-width: 100%;
 }
@@ -29,18 +31,17 @@ Load time on Android phone: 2 seconds;
 
 body {
 	padding-left: 15px;
-	background: white;	/* CHANGE FOR THEME */
+	background: rgb(20,20,20); /* DARK */
 }
 
 main {
 	font-family: Arial;
-	background: rgb(255,255,255);
 }
 
 main > header {
 	font-size: 75px;
 	font-weight: bold;
-	color: #337ab7;	/* CHANGE FOR THEME */
+	color: white;	/* DARK */
 	font-family: Arial;
 	text-align: center;
 }
@@ -51,12 +52,6 @@ main > header {
 	width: 60px;
     border: none;
     cursor: pointer;
-}
-
-.dropcogalt {
-	cursor: pointer;
-	text-decoration: underline;
-	color: blue;
 }
 
 .dropcog:hover, .dropcog:focus {
@@ -73,23 +68,21 @@ main > header {
 .dropdownLinks {
     display: none;
     position: absolute;
-    background-color: #f9f9f9; /* CHANGE FOR THEME */
+    background-color: #404040; /* DARK */
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 	right: 1px;
+
 }
 
-a {
-	cursor: pointer;
-}
 .dropdownLinks a {
-    color: #337ab7; /* CHANGE FOR THEME */
+    color: white;		/* DARK */
     padding: 12px 16px;
     text-decoration: none;
 	font-size: 16px;
     display: block;
-    cursor: pointer;
+    cursor:pointer;
 }
 
 .dropdownLinks a:hover {
@@ -100,6 +93,9 @@ a {
 	display:block;
 }
 
+a {
+	cursor: pointer;
+}
 
 main > nav {
 	margin-left: 10px;
@@ -108,7 +104,7 @@ main > nav {
 }
 
 main > nav > a {
-	color: #337ab7; /* CHANGE FOR THEME */
+	color: white; /* DARK */
 	margin-right: 30px;
 	text-decoration: none;
 }
@@ -117,6 +113,11 @@ main > form > input {
 	width: 300px;
 	height: 22px;
 	margin-bottom: 5px;
+}
+
+form {
+	color: white;
+
 }
 
 main > form > input {
@@ -171,6 +172,7 @@ button {
 }
 
 footer {
+
 	position: relative;
 	right: 0;
 	left: 0;
@@ -179,5 +181,6 @@ footer {
 	font-family: "Arial";
 	font-size: 14px;
 	line-height: 1.42857143;
-	color: #777;
+	color: #777; 
+	
 }
