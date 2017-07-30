@@ -53,6 +53,12 @@ main > header {
     cursor: pointer;
 }
 
+.dropcogalt {
+	cursor: pointer;
+	text-decoration: underline;
+	color: blue;
+}
+
 .dropcog:hover, .dropcog:focus {
     background-color: #d3d3d3;
 }
