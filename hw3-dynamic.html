@@ -53,6 +53,25 @@
                 return res;
             }
 
+            function renderMoviesSoundBoardAjax(soundboard) {
+                var name = soundboard.name;
+                var sounds = soundboard.sounds;
+                var soundNames = ["Chewbacca", "Han Solo", "Darth Varder", "R2D2", "Starship Enterprise",
+                        "Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
+                        "Scarface"];
+
+                for (var i = 0; i < images.length; i++) {
+                    if (i%4 == 0)
+                        result = result + "<br><br>" + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
+                    else
+                        result = result + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
+                }
+
+                return result;
+
+
+            }
+
             function renderSoundBoard(other, compact) {
                 var result = "";
                 var images;
@@ -270,7 +289,7 @@
                 var xhr = createXHR();
              
                 if (xhr)
-                 {
+                 {  //address?
                    xhr.open("GET","packet.json",true);
                   xhr.onreadystatechange = function(){handleResponse(xhr);};
                   xhr.send(null);
@@ -282,9 +301,10 @@
               if (xhr.readyState == 4  && xhr.status == 200)
                 {
                  var parsedResponse = xhr.responseXML;
-                 var msg = parsedResponse.getElementsByTagName('message')[0].firstChild.nodeValue;
-                 var responseOutput = document.getElementById("soundboard");
-                 responseOutput.innerHTML = msg;
+                 var soundboardObj = JSON.parse(xhr.responseText);
+                 //var msg = parsedResponse.getElementsByTagName('message')[0].firstChild.nodeValue;
+                 //var responseOutput = document.getElementById("soundboard");
+                 document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax();
                 }
             }
 
