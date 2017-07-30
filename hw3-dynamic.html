@@ -292,7 +292,7 @@
                  {  //address?
                    xhr.open("GET","./packet.json",true);
                   xhr.onreadystatechange = function(){handleResponse(xhr);};
-                  xhr.send(null);
+                  xhr.send();
                  }
             }
              
@@ -302,9 +302,8 @@
                 {
                  var parsedResponse = xhr.responseXML;
                  var soundboardObj = JSON.parse(xhr.responseText);
-                 //var msg = parsedResponse.getElementsByTagName('message')[0].firstChild.nodeValue;
-                 //var responseOutput = document.getElementById("soundboard");
-                 document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax();
+
+                 document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax(soundboard);
                 }
             }
 

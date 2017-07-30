@@ -16,6 +16,13 @@
                 $('#soundboard').html(renderSoundBoard());
                 $("body").append(createFooter());
 
+                $.ajax({url: "./packet.json", 
+                        dataType:'json',
+                        success: function(result){
+                    var soundboardObj = JSON.parse(result);
+                    $("#soundboard").html(renderMoviesSoundBoardAjax(soundboard));
+                }});
+
             };
 
             function changeSoundboard(n) {
@@ -244,41 +251,6 @@
             }
 
 
-            function createXHR()
-            {
-               try { return new XMLHttpRequest(); } catch(e) {}
-               try { return new ActiveXObject("Msxml2.XMLHTTP.6.0"); } catch (e) {}
-               try { return new ActiveXObject("Msxml2.XMLHTTP.3.0"); } catch (e) {}
-               try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {}
-               try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {}
-               
-               alert("XMLHttpRequest not supported");   
-               return null;
-            }
- 
-            function sendRequest()
-            {
-                var xhr = createXHR();
-             
-                if (xhr)
-                 { 
-                   xhr.open("GET","./packet.json",true);
-                  xhr.onreadystatechange = function(){handleResponse(xhr);};
-                  xhr.send(null);
-                 }
-            }
-            
-            function handleResponse(xhr)
-            {
-              if (xhr.readyState == 4  && xhr.status == 200)
-                {
-                 var parsedResponse = xhr.responseXML;
-                 var soundboardObj = JSON.parse(xhr.responseText);
-                 //var msg = parsedResponse.getElementsByTagName('message')[0].firstChild.nodeValue;
-                 //var responseOutput = document.getElementById("soundboard");
-                 document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax();
-                }
-            }
 
 	</script>
 </head>
