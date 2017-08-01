@@ -4,6 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Markup Masters</title>
         <link id="css-theme" rel="stylesheet" href="./hw3.css"/>
+		<!-- BEGIN TRACKJS -->
+		<script type="text/javascript">window._trackJs = { token: '8d8bc78d5f654b9cb93306c476bf6ba8' };</script>
+		<script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+		<!-- END TRACKJS -->
+
         <script>
 
 
@@ -174,9 +179,9 @@
 
             function createNavBar() {
                 var navNode = document.createElement("nav");
-                navNode.appendChild(createAnchor("https://b-b2dcd.firebaseapp.com/soundboard-part1a.html", "Plain Soundboard"));
-                navNode.appendChild(createAnchor("https://b-b2dcd.firebaseapp.com/bootstrap-soundboard.html", "Bootstrap Soundboard"));
-                navNode.appendChild(createAnchor("https://b-b2dcd.firebaseapp.com/index.html", "About Us"));
+                navNode.appendChild(createAnchor("hw3-dynamic.html", "Vanilla JS Soundboard"));
+                navNode.appendChild(createAnchor("hw3-jquery.html", "JQuery Soundboard"));
+                navNode.appendChild(createAnchor("index.html", "About Us"));
                 return navNode;
             }
 
@@ -311,7 +316,8 @@
     </head>
     <body>
         <noscript>
-
+			trackJs.track('Javascript not available!');
+			<p>Javascript is not available for your browser. Please use a different one.</p>
         </noscript>
     </body>
 </html>
