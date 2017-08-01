@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Markup Masters</title>
+<style>
+	body {background-image:url('nyc.jpg'); background-repeat:no-repeat; background-size:cover;}
+	#team-name {font-family: monospace;text-align: center}
+	.team-info {color: #def8ff}
+	p {font-family: monospace;color: #def4fc}
+	p,span {display: block;font-size: large}
+	.headshots {display: block;}
+
+	/* tell the container's children to float left: */
+	.float-child-containers > * {
+	    float:left;
+	    margin-right:5px;
+	}
+
+	.clear-container {
+	    *zoom:1 /* for IE */
+	}
+	
+	.clear-container:before,
+	
+	.clear-container:after {
+	    content: " ";
+	    display: table;
+	}
+	
+	.clear-container:after {
+	    clear: both;
+	}
+
+	body > div {
+	    border:1px dashed white;
+	    margin-bottom:10px;    
+	}
+
+</style>
+</head>
+<body>
+<h1 id="team-name">Mark-Up Masters</h1>
+
+<div class="clear-container float-child-containers">
+<ol>
+	<li><a href="soundboard-part1a.html">Soundboard A</a>
+	<li><a href="soundboard-part1b.html">Soundboard B</a>
+	<li><a href="tagtest.html">Tag Testing</a>
+</ol>
+</div>
+<hr>
+<div class="clear-container float-child-containers">
+	<img class="headshots" alt="" src="mnheadshot.png" width="220" height="200">
+	<div class="team-info"><span>Name: Magdalena Ninette</span>
+		<span>Class level: Senior</span>
+		<span>Major: Computer science</span>
+		<span>Email: mninette@ucsd.edu</span></div>
+</div>
+<div class="clear-container float-child-containers">
+	<img class="headshots" alt="" src="andythai.jpg" width="200" height="200">
+	<div class="team-info"><span>Name: Andy Thai</span>
+		<span>Class level: Senior</span>
+		<span>Major: Math-CS, Cognitive science</span>
+		<span>Email: andythai@ucsd.edu</span></div>
+</div>
+<div class="clear-container float-child-containers">
+	<img class="headshots" alt="" src="jhurst.png" width="300" height="200">
+	<div class="team-info"><span>Name: John Hurst</span>
+		<span>Class level: Senior</span>
+		<span>Major: Computer science</span>
+		<span>Email: jhurst@ucsd.edu</span></div>
+</div>
+<br>
+	<img alt="" src="meme1.jpg" width="300" height="300">
+	<img alt="" src="meme2.jpg" width="300" height="300">
+	<img alt="" src="meme3.jpg" width="300" height="300">
+</body>
+</html>
