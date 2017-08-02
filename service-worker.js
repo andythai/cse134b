@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 // Incrementing CACHE_VERSION will kick off the install event and force previously cached
 // resources to be cached again.
@@ -86,4 +86,62 @@ self.addEventListener('fetch', event => {
   // If there are any other fetch handlers registered, they will get a chance to call
   // event.respondWith(). If no fetch handlers call event.respondWith(), the request will be
   // handled by the browser as if there were no service worker involvement.
+});*/
+const OFFLINE_URL = './offline.html';
+
+self.addEventListener('install', function(event) {
+  // Skip the 'waiting' lifecycle phase, to go directly from 'installed' to 'activated', even if
+  // there are still previous incarnations of this service worker registration active.
+  event.waitUntil(self.skipWaiting());
 });
+
+self.addEventListener('activate', function(event) {
+  // Claim any clients immediately, so that the page will be under SW control without reloading.
+  event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', function(event) {
+  if (event.request.mode === 'navigate' ||
+      (event.request.method === 'GET' &&
+       event.request.headers.get('accept').includes('text/html'))) {
+
+    console.log('Handling fetch event for', event.request.url);
+    event.respondWith(
+      fetch(event.request).then(function(response) {
+        if (!response.ok) {
+          // An HTTP error response code (40x, 50x) won't cause the fetch() promise to reject.
+          // We need to explicitly throw an exception to trigger the catch() clause.
+          throw Error('response status ' + response.status);
+        }
+
+        // If we got back a non-error HTTP response, return it to the page.
+        return response;
+      }).catch(function(error) {
+        console.log('Fetch failed; returning offline page instead.', error);
+        console.warn('Constructing a fallback response, ' +
+          'due to an error while fetching the real response:', error);
+
+        // For demo purposes, use a pared-down, static YouTube API response as fallback.
+        /*var fallbackResponse = {
+          items: [{
+            snippet: {title: 'Fallback Title 1'}
+          }, {
+            snippet: {title: 'Fallback Title 2'}
+          }, {
+            snippet: {title: 'Fallback Title 3'}
+          }]
+        };*/
+
+        // Construct the fallback response via an in-memory variable. In a real application,
+        // you might use something like `return fetch(FALLBACK_URL)` instead,
+        // to retrieve the fallback response via the network.
+        
+        /*return new Response(JSON.stringify(fallbackResponse), {
+          headers: {'Content-Type': 'application/json'}
+        });*/
+        return fetch(OFFLINE_URL);
+      })
+    );
+  }
+});
+
