@@ -141,7 +141,6 @@
                 node.appendChild(createNavBar());
                 node.appendChild(hr);
                 node.appendChild(document.createElement("br"));
-                node.appendChild(createForm());
                 return node;
             }
 
@@ -170,7 +169,7 @@
 
                 innerDiv.setAttribute("id","dropdownItems");
                 innerDiv.setAttribute("class","dropdownLinks");
-                innerDiv.appendChild(createAnchor("#","Login"));
+                innerDiv.appendChild(createAnchor("hw4-login.html","Login"));
                 innerDiv.appendChild(createAnchor("#","Sign Up"));
                 innerDiv.appendChild(createAnchor("#","Upload"));
                 innerDiv.appendChild(createAnchor("#","Dark Theme","changeTheme('./hw3-dark.css')"));
@@ -187,8 +186,7 @@
 
             function createNavBar() {
                 var navNode = document.createElement("nav");
-                navNode.appendChild(createAnchor("hw3-dynamic.html", "Vanilla JS Soundboard"));
-                navNode.appendChild(createAnchor("hw3-jquery.html", "JQuery Soundboard"));
+                navNode.appendChild(createAnchor("hw3-dynamic.html", "Home"));
                 navNode.appendChild(createAnchor("index.html", "About Us"));
                 return navNode;
             }
@@ -203,23 +201,6 @@
 
                 }
                 return anchorNode;
-            }
-
-            function createForm() {
-                var formNode = document.createElement("form");
-                formNode.appendChild(createBold("Email Address"));
-                formNode.appendChild(br);
-                formNode.appendChild(createInput("text", "email", "Enter Email"));
-                formNode.appendChild(br);
-                formNode.appendChild(createBold("Password"));
-                formNode.appendChild(br);
-                formNode.appendChild(createInput("text", "password", "Password"));
-                formNode.appendChild(br); formNode.appendChild(br);
-                formNode.appendChild(createLabel());
-                formNode.appendChild(br); formNode.appendChild(br);
-                formNode.appendChild(createButton());
-                formNode.appendChild(br); formNode.appendChild(br); formNode.appendChild(br);
-                return formNode;
             }
 
             function createBold(text) {
