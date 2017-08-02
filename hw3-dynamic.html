@@ -11,24 +11,37 @@
 
         <script>
 
+            const DIV = "div";
+            const A = "a";
+            const MAIN = "main";
+            const IMG = "img";
+            const SOUNDBOARD = "soundboard";
+            const ONCLICK = "onclick";
+            const CLASS = "class";
+            const ID = "ID";
+            const POUND = "#";
+            const GET = "GET";
+            const PACKETJSON = "./packet.json";
+            const soundNames = ["Chewbacca", "Han Solo", "Darth Varder", "R2D2", "Starship Enterprise",
+                "Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
+                "Scarface"];
 
             window.onload = function() {
                 document.body.appendChild(createMain());
-                var newDiv = document.createElement("div");
-                newDiv.setAttribute("id", "soundboard");  //<div id="soundboard"></div>
+                var newDiv = document.createElement(DIV);
+                newDiv.setAttribute(ID, SOUNDBOARD);  //<div id="soundboard"></div>
     
-                document.getElementsByTagName("main")[0].appendChild(newDiv);
+                document.getElementsByTagName(MAIN)[0].appendChild(newDiv);
 
                 //document.getElementById('soundboard').innerHTML = renderSoundBoard();
                 document.body.appendChild(createFooter());
                 var xhr = createXHR();
              
-                if (xhr)
-                 {  //address?
-                   xhr.open("GET","./packet.json",true);
-                  xhr.onreadystatechange = function(){handleResponse(xhr);};
-                  xhr.send();
-                 }
+                if (xhr) {  //address?
+                    xhr.open(GET,PACKETJSON,true);
+                    xhr.onreadystatechange = function(){handleResponse(xhr);};
+                    xhr.send();
+                }
             };
 
             var compact = false;
@@ -44,49 +57,62 @@
                 }
                 console.log(n);
                 console.log(compact);
+                var soundboard = document.getElementById(SOUNDBOARD);
                 if(n==1) {
-                    document.getElementById('soundboard').innerHTML = renderSoundBoard(true, compact);
-                }
-                else {
-                    document.getElementById('soundboard').innerHTML = renderSoundBoard(false, compact);
-                }
-            }
-
-            function renderSound(id,image,sound,name,compact) {
-                var res;
-                if (!compact) {
-                    res = "<img src='assets/icons/" + image + "\'" +
-                            " class='flex-item' onclick= 'play(\""+id+"\")' value='play'><audio id=" +
-                            "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>";
+                    renderSoundBoard(true, compact, soundboard);
                 } else {
-                    res = "<a class='dropcogalt'' onclick= 'play(\"" + id + "\")'>" + name + "</a><audio id='" + id + "' src='assets/sounds/" +
-                            sound + "' type = 'audio/mpeg'></audio><br/>";
+                    renderSoundBoard(false, compact, soundboard);
                 }
-                return res;
             }
 
-            function renderMoviesSoundBoardAjax(soundboard) {
+            function createImg_or_anchor(image, id, name, compact) {
+                var rValue;
+                if (compact) {
+                    rValue = document.createElement(A);
+                    rValue.className = "dropcogalt";
+                    rValue.onclick = "play('" + id + "')";
+                    rValue.textContent = document.createTextNode(name);
+                    return rValue;
+                } else {
+                    rValue = document.createElement(IMG);
+                    rValue.src = "assets/icons/" + image;
+                    rValue.className = "flex-item";
+                    rValue.onclick = "play('" + id + "')";
+                    rValue.value = "play";
+                    return rValue;
+                }
+            }
+
+            function createAudio(id, sound) {
+                var audio = document.createElement("audio");
+                audio.id = id;
+                audio.src = "assets/sounds/" + sound;
+                audio.type = "audio/mpeg";
+                return audio;
+            }
+
+            function insertAfter(node, nodeBefore) {
+                nodeBefore.parentNode.insertBefore(node, nodeBefore.nextSibling);
+            }
+
+            function renderMoviesSoundBoardAjax(soundboardObj, soundboard) {
                 var result = "";
-                var name = soundboard.name;
-                var sounds = soundboard.sounds;
-                var soundNames = ["Chewbacca", "Han Solo", "Darth Varder", "R2D2", "Starship Enterprise",
-                        "Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
-                        "Scarface"];
+                var name = soundboardObj.name;
+                var sounds = soundboardObj.sounds;
 
                 for (var i = 0; i < sounds.length; i++) {
-                    if (i%4 == 0)
-                        result = result + "<br><br>" + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
-                    else
-                        result = result + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
+                    if (i%4 == 0) {
+                        soundboard.appendChild(br);
+                        soundboard.appendChild(br);
+                    }
+                    soundboard.appendChild(createImg_or_anchor(images[i], ids[i], soundNames[i], compact));
+                    soundboard.appendChild(createAudio(ids[i], sounds[i]));
                 }
-
                 return result;
-
-
             }
 
-            function renderSoundBoard(other, compact) {
-                var result = "";
+            function renderSoundBoard(other, compact, soundboard) {
+                var result;
                 var images;
                 var sounds;
                 var soundNames;
@@ -101,9 +127,7 @@
                     soundNames = ["Captain America", "Iron Man", "Thor", "Black Widow", "Nick Fury",
                         "The Incredible Hulk", "The Flash", "Green Lantern", "Wonder Woman", "Batman",
                         "Superman", "Aquaman"];
-                }
-                else {
-
+                } else {
                     images = ["chewyicon.png","han.png",
                                                 "darthvadericon.png","r2d2.png",
                                                 "enterpriseicon.png","spokicon.png",
@@ -114,33 +138,33 @@
                                                 "sw-r2d2.mp3","st-beammeaboard.mp3","st-consolebeeps.mp3",
                                                 "st-interfacecomplete.mp3","st-intruderalert.mp3","anchorman1.mp3",
                                                 "anchorman2.mp3","scarface1.mp3","scarface2.mp3"];
-                    soundNames = ["Chewbacca", "Han Solo", "Darth Varder", "R2D2", "Starship Enterprise",
-                        "Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
-                        "Scarface"];
+                    soundNames = this.soundNames;
                 }          
 
                 var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
                             "audio11","audio12"];
 
                 for (var i = 0; i < images.length; i++) {
-                    if (i%4 == 0)
-                        result = result + "<br><br>" + renderSound(ids[i],images[i],sounds[i], soundNames[i], compact);
-                    else
-                        result = result + renderSound(ids[i],images[i],sounds[i], soundNames[i], compact);
+                    if (i % 4 == 0) {
+                        soundboard.appendChild(br);
+                        soundboard.appendChild(br);
+                    }
+                    soundboard.appendChild(createImg_or_anchor(images[i], ids[i], soundNames[i], compact));
+                    soundboard.appendChild(createAudio(ids[i], sounds[i]));
                 }
                 return result;
             }
 
-            var br = document.createElement("br");
+            const br = document.createElement("br");
 
             function createMain() {
-                var node = document.createElement("main");
+                var node = document.createElement(MAIN);
                 node.appendChild(createHeader());
                 var hr = document.createElement("hr");
                 node.appendChild(hr);
                 node.appendChild(createNavBar());
                 node.appendChild(hr);
-                node.appendChild(document.createElement("br"));
+                node.appendChild(br);
                 node.appendChild(createForm());
                 return node;
             }
@@ -153,36 +177,33 @@
                 return headerNode;
             }
 
-
-
             function createGearDropdown() {
-                var dropdown = document.createElement("div");
-                dropdown.setAttribute("class", "dropdown");
+                var dropdown = document.createElement(DIV);
+                dropdown.setAttribute(CLASS, "dropdown");
 
-                var gear = document.createElement("img");
+                var gear = document.createElement(IMG);
                 gear.setAttribute("src","./gears.svg");
-                gear.setAttribute("onclick","dropdownFunc()");
-                gear.setAttribute("class","dropcog");
+                gear.setAttribute(ONCLICK,"dropdownFunc()");
+                gear.setAttribute(CLASS,"dropcog");
 
                 dropdown.appendChild(gear);// <img src="./gears.svg" onclick="dropdownFunc()" class="dropcog"></img>
                 
-                var innerDiv = document.createElement("div");
+                var innerDiv = document.createElement(DIV);
 
-                innerDiv.setAttribute("id","dropdownItems");
-                innerDiv.setAttribute("class","dropdownLinks");
-                innerDiv.appendChild(createAnchor("#","Login"));
-                innerDiv.appendChild(createAnchor("#","Sign Up"));
-                innerDiv.appendChild(createAnchor("#","Upload"));
-                innerDiv.appendChild(createAnchor("#","Dark Theme","changeTheme('./hw3-dark.css')"));
-                innerDiv.appendChild(createAnchor("#","Light Theme","changeTheme('./hw3.css')"));
-                innerDiv.appendChild(createAnchor("#","Superhero Soundboard","changeSoundboard(1)"));
-                innerDiv.appendChild(createAnchor("#","Movies Soundboard","changeSoundboard(2)"));
-                innerDiv.appendChild(createAnchor("#","Compact","changeSoundboard(null)"));
+                innerDiv.setAttribute(ID,"dropdownItems");
+                innerDiv.setAttribute(CLASS,"dropdownLinks");
+                innerDiv.appendChild(createAnchor(POUND,"Login"));
+                innerDiv.appendChild(createAnchor(POUND,"Sign Up"));
+                innerDiv.appendChild(createAnchor(POUND,"Upload"));
+                innerDiv.appendChild(createAnchor(POUND,"Dark Theme","changeTheme('./hw3-dark.css')"));
+                innerDiv.appendChild(createAnchor(POUND,"Light Theme","changeTheme('./hw3.css')"));
+                innerDiv.appendChild(createAnchor(POUND,"Superhero Soundboard","changeSoundboard(1)"));
+                innerDiv.appendChild(createAnchor(POUND,"Movies Soundboard","changeSoundboard(2)"));
+                innerDiv.appendChild(createAnchor(POUND,"Compact","changeSoundboard(null)"));
 
                 dropdown.appendChild(innerDiv);
 
                 return dropdown;
-
             }
 
             function createNavBar() {
@@ -194,13 +215,12 @@
             }
 
             function createAnchor(href, text, f) {
-                var anchorNode = document.createElement("a");
+                var anchorNode = document.createElement(A);
                 anchorNode.href = href;
                 anchorNode.appendChild(document.createTextNode(text));
 
                 if (f) {
-                    anchorNode.setAttribute("onclick",f);
-
+                    anchorNode.setAttribute(ONCLICK,f);
                 }
                 return anchorNode;
             }
@@ -239,8 +259,9 @@
             }
 
             function createLabel() {
+                const CHECKBOX = "checkbox";
                 var label = document.createElement("label");
-                label.appendChild(createInput("checkbox", "checkbox", null));
+                label.appendChild(createInput(CHECKBOX, CHECKBOX, null));
                 label.appendChild(document.createTextNode(" Remember Me"));
                 return label;
             }
@@ -259,8 +280,6 @@
                 document.getElementById("css-theme").href=theme;
             }
 
-
-
             function createFooter() {
                 var footer  = document.createElement("footer");
                 var text1 = document.createTextNode("Magdalena Ninette | Andy Thai | John Hurst");
@@ -278,15 +297,14 @@
             function play(audioId){
                 var audio = document.getElementById(audioId);
                 if (audio.paused) {
-                    console.log("audio paused")
+                    console.log("audio paused");
                     audio.play();
                 } else {
                     audio.pause();
                 }
             }
 
-            function createXHR()
-            {
+            function createXHR() {
                try { return new XMLHttpRequest(); } catch(e) {}
                try { return new ActiveXObject("Msxml2.XMLHTTP.6.0"); } catch (e) {}
                try { return new ActiveXObject("Msxml2.XMLHTTP.3.0"); } catch (e) {}
@@ -297,27 +315,24 @@
                return null;
             }
  
-            function sendRequest()
-            {
+            function sendRequest() {
                 var xhr = createXHR();
              
-                if (xhr)
-                 {  //address?
-                   xhr.open("GET","./packet.json",true);
-                  xhr.onreadystatechange = function(){handleResponse(xhr);};
-                  xhr.send();
+                if (xhr) {  //address?
+                     xhr.open(GET,PACKETJSON,true);
+                     xhr.onreadystatechange = function(){handleResponse(xhr);};
+                     xhr.send();
                  }
             }
              
-            function handleResponse(xhr)
-            {
-              if (xhr.readyState == 4  && xhr.status == 200)
-                {
-                 var parsedResponse = xhr.responseXML;
-                 var soundboardObj = JSON.parse(xhr.responseText);
+            function handleResponse(xhr) {
+                if (xhr.readyState == 4  && xhr.status == 200) {
+                    var parsedResponse = xhr.responseXML;
+                    var soundboardObj = JSON.parse(xhr.responseText);
+                    var soundboard = document.getElementById(SOUNDBOARD);
 
-                 document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax(soundboardObj);
-                 //document.getElementById('demo').innerHTML = rendesoundboardObj.name;
+                    renderMoviesSoundBoardAjax(soundboardObj, soundboard);
+                    //document.getElementById('demo').innerHTML = rendesoundboardObj.name;
                 }
             }
 
