@@ -10,7 +10,18 @@
 		<!-- END TRACKJS -->
 
         <script>
-
+        
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                  // Registration was successful
+                  console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                  // registration failed :(
+                  console.log('ServiceWorker registration failed: ', err);
+                });
+              });
+            }
 
             window.onload = function() {
                 document.body.appendChild(createMain());
@@ -22,13 +33,20 @@
                 //document.getElementById('soundboard').innerHTML = renderSoundBoard();
                 document.body.appendChild(createFooter());
                 var xhr = createXHR();
-             
-                if (xhr)
-                 {  //address?
-                   xhr.open("GET","./packet.json",true);
-                  xhr.onreadystatechange = function(){handleResponse(xhr);};
-                  xhr.send();
-                 }
+               
+                if (xhr) {  
+                    xhr.open("GET","./packet.json",true);
+                    xhr.timeout = 2000; //time out set for 2 seconds
+
+                    xhr.onreadystatechange = function(){handleResponse(xhr);};
+                    xhr.ontimeout = function(e) {
+                        xhr.open("GET","./packet.json",true);
+                    };
+
+                    xhr.overrideMimeType("application/json");
+                    xhr.send();
+                }
+
             };
 
             var compact = false;
@@ -309,18 +327,32 @@
                  }
             }
              
-            function handleResponse(xhr)
-            {
-              if (xhr.readyState == 4  && xhr.status == 200)
-                {
-                 var parsedResponse = xhr.responseXML;
-                 var soundboardObj = JSON.parse(xhr.responseText);
+            function handleResponse(xhr) {
+            
+                var DONE = 4;
+                var OK = 200;
 
-                 document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax(soundboardObj);
-                 //document.getElementById('demo').innerHTML = rendesoundboardObj.name;
+                if (xhr.readyState === DONE) {
+                    if (xhr.status === 200) { 
+                        var parsedResponse = xhr.responseXML;
+                        var soundboardObj = JSON.parse(xhr.responseText);
+
+                        document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax(soundboardObj);
+                    }
+                    if (xhr.status === 404) {
+                        alert("File not found");
+                        document.getElementById('soundboard').innerHTML = renderSoundBoard();
+                    }
+                    if (xhr.status === 505) {
+                        alert("Could not connect to server");
+                        document.getElementById('soundboard').innerHTML = renderSoundBoard();
+                    }
+                }
+                else {
+                    // if request fails, render the soundboard
+                    document.getElementById('soundboard').innerHTML = renderSoundBoard();
                 }
             }
-
 
         </script>
     </head>
