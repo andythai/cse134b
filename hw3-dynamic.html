@@ -60,7 +60,7 @@
                             "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>";
                 } else {
                     res = "<a class='dropcogalt'' onclick= 'play(\"" + id + "\")'>" + name + "</a><audio id='" + id + "' src='assets/sounds/" +
-                            sound + "' type = 'audio/mpeg'></audio><br/>";
+                            sound + "' type = 'audio/mpeg'></audio><br/>" + "<br>";
                 }
                 return res;
             }
@@ -123,10 +123,7 @@
                             "audio11","audio12"];
 
                 for (var i = 0; i < images.length; i++) {
-                    if (i%4 == 0)
-                        result = result + "<br><br>" + renderSound(ids[i],images[i],sounds[i], soundNames[i], compact);
-                    else
-                        result = result + renderSound(ids[i],images[i],sounds[i], soundNames[i], compact);
+                    result = result + renderSound(ids[i],images[i],sounds[i], soundNames[i], compact);
                 }
                 return result;
             }
