@@ -4,36 +4,40 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Markup Masters</title>
         <link id="css-theme" rel="stylesheet" href="./hw3.css"/>
+		
 		<!-- BEGIN TRACKJS -->
 		<script type="text/javascript">window._trackJs = { token: '8d8bc78d5f654b9cb93306c476bf6ba8' };</script>
 		<script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
 		<!-- END TRACKJS -->
 
+		<!-- Other Javascript Functions -->
         <script>
-
-
-            window.onload = function() {
-                document.body.appendChild(createMain());
+		
+			<!-- On load function -->
+			window.onload = function() {
+				document.body.appendChild(createMain());
                 var newDiv = document.createElement("div");
-                newDiv.setAttribute("id", "soundboard");  //<div id="soundboard"></div>
+                newDiv.setAttribute("id", "soundboard");
     
                 document.getElementsByTagName("main")[0].appendChild(newDiv);
 
-                //document.getElementById('soundboard').innerHTML = renderSoundBoard();
                 document.body.appendChild(createFooter());
                 var xhr = createXHR();
              
+				<!-- HTTP Request: JSON Packet Getting -->
                 if (xhr)
-                 {  //address?
-                   xhr.open("GET","./packet.json",true);
-                  xhr.onreadystatechange = function(){handleResponse(xhr);};
-                  xhr.send();
-                 }
+				{
+					xhr.open("GET","./packet.json",true);
+					xhr.onreadystatechange = function(){handleResponse(xhr);};
+					xhr.send();
+                }
             };
 
+			<!-- Variables for changing themes -->
             var compact = false;
             var soundTheme = 2;
 
+			<!-- Function to change soundboard theme -->
             function changeSoundboard(n) {
                 console.log(n);
                 if (n == null) {
@@ -44,7 +48,7 @@
                 }
                 console.log(n);
                 console.log(compact);
-                if(n==1) {
+                if (n == 1) {
                     document.getElementById('soundboard').innerHTML = renderSoundBoard(true, compact);
                 }
                 else {
@@ -52,19 +56,24 @@
                 }
             }
 
+			<!-- Function to render soundboard assets -->
             function renderSound(id,image,sound,name,compact) {
                 var res;
+				<!-- Rich mode -->
                 if (!compact) {
                     res = "<img src='assets/icons/" + image + "\'" +
                             " class='flex-item' onclick= 'play(\""+id+"\")' value='play'><audio id=" +
                             "\'" + id + "\' src='assets/sounds/" + sound + "\' type='audio/mpeg'></audio>";
-                } else {
+                } 
+				<!-- Compact mode -->
+				else {
                     res = "<a class='dropcogalt'' onclick= 'play(\"" + id + "\")'>" + name + "</a><audio id='" + id + "' src='assets/sounds/" +
                             sound + "' type = 'audio/mpeg'></audio><br/>" + "<br>";
                 }
                 return res;
             }
 
+			<!-- Function to render Ajax Assets -->
             function renderMoviesSoundBoardAjax(soundboard) {
                 var result = "";
                 var name = soundboard.name;
@@ -72,24 +81,20 @@
                 var soundNames = ["Chewbacca", "Han Solo", "Darth Varder", "R2D2", "Starship Enterprise",
                         "Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
                         "Scarface"];
-
+				<!-- Append all Ajax soundboard assets to each other -->
                 for (var i = 0; i < sounds.length; i++) {
-                    if (i%4 == 0)
-                        result = result + "<br><br>" + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
-                    else
-                        result = result + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
+                    result = result + renderSound(sounds[i].name,sounds[i].image,sounds[i].audio, soundNames[i], compact);
                 }
-
                 return result;
-
-
             }
 
+			<!-- Function to render and retrieve png and mp3 assets -->
             function renderSoundBoard(other, compact) {
                 var result = "";
                 var images;
                 var sounds;
                 var soundNames;
+				<!-- Superhero Theme -->
                 if (other) {
                     images = ["hero1.png", "hero2.png", "hero3.png", "hero4.png",
                                   "hero5.png", "hero6.png", "hero7.png", "hero8.png", "hero9.png", 
@@ -102,8 +107,8 @@
                         "The Incredible Hulk", "The Flash", "Green Lantern", "Wonder Woman", "Batman",
                         "Superman", "Aquaman"];
                 }
+				<!-- Movies Theme -->
                 else {
-
                     images = ["chewyicon.png","han.png",
                                                 "darthvadericon.png","r2d2.png",
                                                 "enterpriseicon.png","spokicon.png",
@@ -118,10 +123,10 @@
                         "Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
                         "Scarface"];
                 }          
-
+				<!-- Audio IDs -->
                 var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
                             "audio11","audio12"];
-
+				<!-- Append to results -->
                 for (var i = 0; i < images.length; i++) {
                     result = result + renderSound(ids[i],images[i],sounds[i], soundNames[i], compact);
                 }
@@ -130,6 +135,7 @@
 
             var br = document.createElement("br");
 
+			<!-- Main function to put together main elements -->
             function createMain() {
                 var node = document.createElement("main");
                 node.appendChild(createHeader());
@@ -141,6 +147,7 @@
                 return node;
             }
 
+			<!-- Main function to put together header elements -->
             function createHeader() {
                 var headerNode = document.createElement("header");
                 var headerText = document.createTextNode("Soundboard");
@@ -150,20 +157,18 @@
             }
 
 
-
+			<!-- Main function to put together gear settings elements -->
             function createGearDropdown() {
                 var dropdown = document.createElement("div");
                 dropdown.setAttribute("class", "dropdown");
-
+				<!-- Gear assets -->
                 var gear = document.createElement("img");
                 gear.setAttribute("src","./gears.svg");
                 gear.setAttribute("onclick","dropdownFunc()");
                 gear.setAttribute("class","dropcog");
-
-                dropdown.appendChild(gear);// <img src="./gears.svg" onclick="dropdownFunc()" class="dropcog"></img>
-                
+                dropdown.appendChild(gear);
+				<!-- Inner Div -->
                 var innerDiv = document.createElement("div");
-
                 innerDiv.setAttribute("id","dropdownItems");
                 innerDiv.setAttribute("class","dropdownLinks");
                 innerDiv.appendChild(createAnchor("hw4-login.html","Login"));
@@ -174,13 +179,12 @@
                 innerDiv.appendChild(createAnchor("#","Superhero Soundboard","changeSoundboard(1)"));
                 innerDiv.appendChild(createAnchor("#","Movies Soundboard","changeSoundboard(2)"));
                 innerDiv.appendChild(createAnchor("#","Compact","changeSoundboard(null)"));
-
                 dropdown.appendChild(innerDiv);
-
+				
                 return dropdown;
-
             }
 
+			<!-- Main function to put together navbar elements -->
             function createNavBar() {
                 var navNode = document.createElement("nav");
                 navNode.appendChild(createAnchor("hw3-dynamic.html", "Home"));
@@ -188,11 +192,11 @@
                 return navNode;
             }
 
+			<!-- Function to put together anchornode (link) elements -->
             function createAnchor(href, text, f) {
                 var anchorNode = document.createElement("a");
                 anchorNode.href = href;
                 anchorNode.appendChild(document.createTextNode(text));
-
                 if (f) {
                     anchorNode.setAttribute("onclick",f);
 
@@ -200,12 +204,14 @@
                 return anchorNode;
             }
 
+			<!-- Function for bold text -->
             function createBold(text) {
                 var b = document.createElement("b");
                 b.appendChild(document.createTextNode(text));
                 return b;
             }
 
+			<!-- Function for input elements -->
             function createInput(type, name, value) {
                 var input = document.createElement("input");
                 input.type = type;
@@ -216,6 +222,7 @@
                 return input;
             }
 
+			<!-- Function for labels (Remember Me login checkbox) -->
             function createLabel() {
                 var label = document.createElement("label");
                 label.appendChild(createInput("checkbox", "checkbox", null));
@@ -223,22 +230,24 @@
                 return label;
             }
 
+			<!-- Function for buttons (login) -->
             function createButton() {
                 var button = document.createElement("button");
                 button.appendChild(document.createTextNode("Submit"));
                 return button;
             }
 
+			<!-- Function for dropdown menu items -->
             function dropdownFunc() {
                 document.getElementById("dropdownItems").classList.toggle("show");
             }   
 
+			<!-- Function for changing theme -->
             function changeTheme(theme) {
                 document.getElementById("css-theme").href=theme;
             }
 
-
-
+			<!-- Function for creating footer -->
             function createFooter() {
                 var footer  = document.createElement("footer");
                 var text1 = document.createTextNode("Magdalena Ninette | Andy Thai | John Hurst");
@@ -249,10 +258,10 @@
                 footer.appendChild(document.createElement("br"));
                 var text3 = document.createTextNode("Summer 2017");
                 footer.appendChild(text3);
-
                 return footer;
             }
 
+			<!-- Function for playing audio assets -->
             function play(audioId){
                 var audio = document.getElementById(audioId);
                 if (audio.paused) {
@@ -263,6 +272,7 @@
                 }
             }
 
+			<!-- Function for creating XHR HTTP Request -->
             function createXHR()
             {
                try { return new XMLHttpRequest(); } catch(e) {}
@@ -270,36 +280,33 @@
                try { return new ActiveXObject("Msxml2.XMLHTTP.3.0"); } catch (e) {}
                try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {}
                try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {}
-               
                alert("XMLHttpRequest not supported");   
                return null;
             }
  
+			<!-- Send HTTP Request -->
             function sendRequest()
             {
                 var xhr = createXHR();
-             
                 if (xhr)
-                 {  //address?
-                   xhr.open("GET","./packet.json",true);
-                  xhr.onreadystatechange = function(){handleResponse(xhr);};
-                  xhr.send();
-                 }
-            }
-             
-            function handleResponse(xhr)
-            {
-              if (xhr.readyState == 4  && xhr.status == 200)
                 {
-                 var parsedResponse = xhr.responseXML;
-                 var soundboardObj = JSON.parse(xhr.responseText);
-
-                 document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax(soundboardObj);
-                 //document.getElementById('demo').innerHTML = rendesoundboardObj.name;
+					xhr.open("GET","./packet.json",true);
+					xhr.onreadystatechange = function(){handleResponse(xhr);};
+					xhr.send();
                 }
             }
-
-
+             
+			<!-- Function to handle response -->
+            function handleResponse(xhr)
+            {
+				<!-- On success: -->
+				if (xhr.readyState == 4  && xhr.status == 200)
+                {
+					var parsedResponse = xhr.responseXML;
+					var soundboardObj = JSON.parse(xhr.responseText);
+					document.getElementById('soundboard').innerHTML = renderMoviesSoundBoardAjax(soundboardObj);
+                }
+            }
         </script>
     </head>
     <body>
