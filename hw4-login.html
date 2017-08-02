@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Markup Masters</title>
+	<link id="css-theme" rel="stylesheet" href="./hw3.css">
+	</head>
+	
+	<body>
+	<script>
+	function play(audioId){
+    	var audio = document.getElementById(audioId);
+		if (audio.paused) {
+			console.log("audio paused")
+			audio.play();
+		} else {
+			audio.pause();
+		}
+   	}
+   	function changeTheme(theme) {
+   		document.getElementById("css-theme").href=theme;
+   	}
+	
+	function dropdownFunc() {
+		document.getElementById("dropdownItems").classList.toggle("show");
+	}
+
+	window.onclick = function(event) {
+	  if (!event.target.matches('.dropcog')) {
+
+		var dropdowns = document.getElementsByClassName("dropdownLinks");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+		  var openDropdown = dropdowns[i];
+		  if (openDropdown.classList.contains('show')) {
+			openDropdown.classList.remove('show');
+		  }
+		}
+	  }
+	}
+	</script>
+		<main>
+		
+			<header>
+				Soundboard
+				<div class="dropdown">
+					<img src="./gears.svg" onclick="dropdownFunc()" class="dropcog"></img>
+					<div id="dropdownItems" class="dropdownLinks">
+						<a href="hw4-login.html">Login</a>
+						<a href="#">Sign Up</a>
+						<a href="#">Upload</a>
+						<a href="#" onclick="changeTheme('./hw3-dark.css')">Dark Theme</a> <!-- Dark Theme -->
+						<a href="#" onclick="changeTheme('./hw3.css')">Light Theme</a>
+						<a href="#">Compact Mode</a>
+					</div>
+				</div> <!-- </div for dropdown> -->
+			</header>
+			<nav>
+				<a href="hw3-dynamic.html">Home</a> 
+				<a href="index.html">About Us</a> 
+			</nav>
+
+			<hr>
+			<br>
+			
+			<form>
+			  <b>Email address<b><br>
+			  <input type="text" name="email" value="Enter email">
+			  <br>
+			  <b>Password<b><br>
+			  <input type="text" name="password" value="Password">
+			  <br><br>
+
+			 
+
+			<label><input id="checkBox" type="checkbox"> Remember me</label> <br> <br>
+			<button type="button">Submit</button> <br>
+			<br>
+
+			<br><br>
+	
+		</b></b></b></b></form></main><b><b><b>
+
+		<br>
+		
+		<footer>
+			<hr>
+			Andy Thai | Magdalena Ninette | John Hurst<br>
+			CSE 134B<br>
+			Summer 2017
+		</footer>
+
+	
+
+
+
+</b></b></b></body></html>
