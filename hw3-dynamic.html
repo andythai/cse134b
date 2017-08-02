@@ -13,7 +13,7 @@
 		<!-- Other Javascript Functions -->
         <script>
         
-            if ('serviceWorker' in navigator) {
+            /* if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function () {
                     navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
                         // Registration was successful
@@ -23,7 +23,7 @@
                         console.log('ServiceWorker registration failed: ', err);
                     });
                 });
-            }
+            } */
 
             const DIV = "div";
             const A = "a";
@@ -39,6 +39,7 @@
             const SOUNDNAMES = ["Chewbacca", "Han Solo", "Darth Varder", "R2D2", "Starship Enterprise",
                 "Spock", "Rocket Ship", "Moon", "Ron Burgundy", "Ron Burgundy's Mustache", "Female Scarface",
                 "Scarface"];
+            const br = document.createElement("br");
 
             <!-- On load function -->
             window.onload = function() {
@@ -94,14 +95,14 @@
                 if (compact) {
                     rValue = document.createElement(A);
                     rValue.className = "dropcogalt";
-                    rValue.onclick = "play('" + id + "')";
-                    rValue.textContent = document.createTextNode(name);
+                    rValue.addEventListener("click", function(){play(id)});
+                    rValue.appendChild(document.createTextNode(name));
                     return rValue;
                 } else {
                     rValue = document.createElement(IMG);
                     rValue.src = "assets/icons/" + image;
                     rValue.className = "flex-item";
-                    rValue.onclick = "play('" + id + "')";
+                    rValue.addEventListener("click", function() {play(id)});
                     rValue.value = "play";
                     return rValue;
                 }
@@ -121,25 +122,28 @@
 
             <!-- Function to render Ajax Assets -->
             function renderMoviesSoundBoardAjax(soundboardObj, soundboard) {
-                var result = "";
                 var name = soundboardObj.name;
                 var sounds = soundboardObj.sounds;
+
+                console.log(soundboardObj);
+                <!-- clear soundboard before adding new elements -->
+                while(soundboard.firstChild) {
+                    soundboard.removeChild(soundboard.firstChild);
+                }
 
                 <!-- Append all Ajax soundboard assets to each other -->
                 for (var i = 0; i < sounds.length; i++) {
                     if (i % 4 == 0) {
-                        soundboard.appendChild(br);
-                        soundboard.appendChild(br);
+                        soundboard.appendChild(document.createElement("br"));
+                        soundboard.appendChild(document.createElement("br"));
                     }
-                    soundboard.appendChild(createImg_or_anchor(sounds[i].image, sounds[i].name, SOUNDNAMES[i], compact));
+                    soundboard.appendChild(createImg_or_anchor(sounds[i].image, sounds[i].name, SOUNDNAMES[i], false));
                     soundboard.appendChild(createAudio(sounds[i].name, sounds[i].audio));
                 }
-                return result;
             }
 
             <!-- Function to render and retrieve png and mp3 assets -->
             function renderSoundBoard(other, compact, soundboard) {
-                var result;
                 var images;
                 var sounds;
                 var soundNames;
@@ -173,19 +177,28 @@
 				<!-- Audio IDs -->
                 var ids = ["audio1","audio2","audio3","audio4","audio5","audio6","audio7","audio8","audio9","audio10",
                             "audio11","audio12"];
-				<!-- Append to results -->
+                <!-- clear soundboard before adding new elements -->
+				while(soundboard.firstChild) {
+				    soundboard.removeChild(soundboard.firstChild);
+                }
+				<!-- Append to soundboard -->
+                if (compact) {
+                    soundboard.appendChild(document.createElement("br"));
+                    soundboard.appendChild(document.createElement("br"));
+                }
                 for (var i = 0; i < images.length; i++) {
-                    if (i % 4 == 0) {
-                        soundboard.appendChild(br);
-                        soundboard.appendChild(br);
+                    if (i%4 == 0 && !compact) {
+                        soundboard.appendChild(document.createElement("br"));
+                        soundboard.appendChild(document.createElement("br"));
                     }
                     soundboard.appendChild(createImg_or_anchor(images[i], ids[i], soundNames[i], compact));
                     soundboard.appendChild(createAudio(ids[i], sounds[i]));
+                    if (compact) {
+                        soundboard.appendChild(document.createElement("br"));
+                    }
                 }
-                return result;
             }
 
-            const br = document.createElement("br");
 
 			<!-- Main function to put together main elements -->
             function createMain() {
@@ -375,24 +388,25 @@
                 const soundboard = document.getElementById(SOUNDBOARD);
 
                 if (xhr.readyState === DONE) {
+                    console.log(xhr.status);
                     if (xhr.status === 200) { 
                         var parsedResponse = xhr.responseXML;
                         var soundboardObj = JSON.parse(xhr.responseText);
 
-                        document.getElementById(SOUNDBOARD).innerHTML = renderMoviesSoundBoardAjax(soundboardObj, soundboard);
+                        renderMoviesSoundBoardAjax(soundboardObj, soundboard);
                     }
                     if (xhr.status === 404) {
                         alert("File not found");
-                        document.getElementById(SOUNDBOARD).innerHTML = renderSoundBoard(false, false, soundboard);
+                        renderSoundBoard(false, false, soundboard);
                     }
                     if (xhr.status === 505) {
                         alert("Could not connect to server");
-                        document.getElementById(SOUNDBOARD).innerHTML = renderSoundBoard(false, false, soundboard);
+                        renderSoundBoard(false, false, soundboard);
                     }
                 }
                 else {
                     // if request fails, render the soundboard
-                    document.getElementById(SOUNDBOARD).innerHTML = renderSoundBoard(false, false, soundboard);
+                    renderSoundBoard(false, false, soundboard);
                 }
             }
 
