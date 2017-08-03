@@ -13,9 +13,7 @@
   },
   "theme_color": "#f0f8ff",
   "background_color": "#FAFAFA",
-  "icons": { 
-      "128": "./assets/icons/icon_128.png",
-      "192": "./assets/icons/icon1_192.png", 
-      "512": "./assets/icons/icon1_512.png"
-    }
+  "icons": {
+    "512" : "./assets/icons/icon1_512.png"
+  }
 }
