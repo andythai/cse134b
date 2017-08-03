@@ -1,5 +1,8 @@
 {
   "name": "Soundboard by Markup Masters",
+  "short_name": "Soundboard by Markup Masters",
+  "start_url": "https://b-b2dcd.firebaseapp.com/hw3-dynamic.html",
+  "display": "standalone",
   "description": "An app that plays sound bites from various movies",
   "version": "0.0.0.1",
   "manifest_version": 2,
