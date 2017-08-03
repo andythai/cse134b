@@ -1,16 +1,77 @@
 <!DOCTYPE html>
 <html>
-	<head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Markup Masters</title>
-        <link id="css-theme" rel="stylesheet" href="./hw3.css"/>
-    </head>
-
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Markup Masters</title>
+	<link id="css-theme" rel="stylesheet" href="./hw3.css">
+	</head>
+	
 	<body>
+	<script>
+   	function changeTheme(theme) {
+   		document.getElementById("css-theme").href=theme;
+   	}
+	
+	function dropdownFunc() {
+		document.getElementById("dropdownItems").classList.toggle("show");
+	}
 
-	<h1>Error page</h1>
+	window.onclick = function(event) {
+	  if (!event.target.matches('.dropcog')) {
 
-	<p>Sorry network timed out.</p>
+		var dropdowns = document.getElementsByClassName("dropdownLinks");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+		  var openDropdown = dropdowns[i];
+		  if (openDropdown.classList.contains('show')) {
+			openDropdown.classList.remove('show');
+		  }
+		}
+	  }
+	}
+	</script>
+		<main>
+		
+			<header>
+				Soundboard
+				<div class="dropdown">
+					<img src="./gears.svg" onclick="dropdownFunc()" class="dropcog"></img>
+					<div id="dropdownItems" class="dropdownLinks">
+						<a href="hw4-login.html">Login</a>
+						<a href="hw4-signup.html">Sign Up</a>
+						<a href="#">Upload</a>
+						<a href="#" onclick="changeTheme('./hw3-dark.css')">Dark Theme</a> <!-- Dark Theme -->
+						<a href="#" onclick="changeTheme('./hw3.css')">Light Theme</a>
+						<a href="#">Compact Mode</a>
+					</div>
+				</div> <!-- </div for dropdown> -->
+			</header>
+			<nav>
+				<a href="hw3-dynamic.html">Home</a> 
+				<a href="index.html">About Us</a> 
+			</nav>
 
-</body>
-</html>
+			<hr>
+			<br>
+			
+			<div class="neterror">
+				<p>Sorry!</p>
+				<p>It seems like you've run into an network timeout error.</p> 
+				<p>Please check your network connection.</p>
+			</div>
+			</main><b><b><b>
+
+		<br>
+		
+		<footer>
+			<hr>
+			Andy Thai | Magdalena Ninette | John Hurst<br>
+			CSE 134B<br>
+			Summer 2017
+		</footer>
+
+	
+
+
+
+</b></b></b></body></html>

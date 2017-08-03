@@ -181,3 +181,16 @@ footer {
 	line-height: 1.42857143;
 	color: #777;
 }
+
+.neterror {
+	width: 700px;
+	font-family: "Arial";
+	font-size: 30px;
+	font-weight: bold;
+	margin: auto;
+	border-radius: 5px;
+    height: 210px;
+    background: #337ab7;
+	text-align: center;
+	color: white;
+}
