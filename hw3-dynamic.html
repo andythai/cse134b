@@ -258,8 +258,8 @@
                 var innerDiv = document.createElement(DIV);
                 innerDiv.setAttribute(ID,"dropdownItems");
                 innerDiv.setAttribute(CLASS,"dropdownLinks");
-                innerDiv.appendChild(createAnchor(POUND,"Login"));
-                innerDiv.appendChild(createAnchor(POUND,"Sign Up"));
+                innerDiv.appendChild(createAnchor("./hw4-login.html","Login"));
+                innerDiv.appendChild(createAnchor("./hw4-signup.html","Sign Up"));
                 innerDiv.appendChild(createAnchor(POUND,"Upload"));
                 innerDiv.appendChild(createAnchor(POUND,"Dark Theme","changeTheme('./hw3-dark.css')"));
                 innerDiv.appendChild(createAnchor(POUND,"Light Theme","changeTheme('./hw3.css')"));
@@ -276,6 +276,7 @@
                 var navNode = document.createElement("nav");
                 navNode.appendChild(createAnchor("hw3-dynamic.html", "Home"));
                 navNode.appendChild(createAnchor("index.html", "About Us"));
+                navNode.appendChild(createAnchor("readme.md", "README (Write up)"));
                 return navNode;
             }
 
