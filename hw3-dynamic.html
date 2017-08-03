@@ -82,6 +82,8 @@
                 if (n == null) {
                     n = soundTheme;
                     compact = !compact;
+                } else if (typeof(n) != "number") {
+                    <!-- Check for type, do nothing if incorrect -->
                 } else {
                     this.soundTheme = n;
                 }
@@ -96,6 +98,10 @@
             }
 
             function createImg_or_anchor(image, id, name, compact) {
+
+                if (typeof(image) !== "string" || typeof(id) !== "string" || typeof(name) !== "string" || typeof(compact) !== "boolean") {
+                    return document.createTextNode("\u00A0");
+                }
                 var rValue;
                 if (compact) {
                     rValue = document.createElement(A);
@@ -114,6 +120,10 @@
             }
 
             function createAudio(id, sound) {
+
+                if (typeof(id) !== "string" || typeof(sound) !== "string") {
+                    return document.createTextNode("\u00A0");
+                }
                 var audio = document.createElement("audio");
                 audio.id = id;
                 audio.src = "assets/sounds/" + sound;
@@ -127,6 +137,7 @@
 
             <!-- Function to render Ajax Assets -->
             function renderMoviesSoundBoardAjax(soundboardObj, soundboard) {
+
                 var name = soundboardObj.name;
                 var sounds = soundboardObj.sounds;
 
@@ -149,6 +160,11 @@
 
             <!-- Function to render and retrieve png and mp3 assets -->
             function renderSoundBoard(other, compact, soundboard) {
+
+                if (typeof(other) !== "boolean" || typeof(compact) !== "boolean") {
+                    return;
+                }
+
                 var images;
                 var sounds;
                 var soundNames;
@@ -284,6 +300,11 @@
 
 			<!-- Function to put together anchornode (link) elements -->
             function createAnchor(href, text, f) {
+
+                if (typeof(href) !== "string" || typeof(text) !== "string") {
+                    return document.createTextNode("\u00A0")
+                }
+
                 var anchorNode = document.createElement(A);
                 anchorNode.href = href;
                 anchorNode.appendChild(document.createTextNode(text));
@@ -295,6 +316,11 @@
 
 			<!-- Function for bold text -->
             function createBold(text) {
+
+                if (typeof(text) !== "string") {
+                    return document.createTextNode("\u00A0");
+                }
+
                 var b = document.createElement("b");
                 b.appendChild(document.createTextNode(text));
                 return b;
@@ -302,6 +328,11 @@
 
 			<!-- Function for input elements -->
             function createInput(type, name, value) {
+
+                if (typeof(type) !== "string" || typeof(name) !== "string") {
+                    return document.createTextNode("\u00A0");
+                }
+
                 var input = document.createElement("input");
                 input.type = type;
                 input.name = name;
@@ -334,6 +365,9 @@
 
 			<!-- Function for changing theme -->
             function changeTheme(theme) {
+                if (typeof(theme) !== "string") {
+                    return;
+                }
                 document.getElementById("css-theme").href=theme;
             }
 
@@ -355,6 +389,11 @@
 
 			<!-- Function for playing audio assets -->
             function play(audioId){
+
+                if (typeof(audioId) !== "string") {
+                    return;
+                }
+
                 var audio = document.getElementById(audioId);
                 if (audio.paused) {
                     console.log("audio paused");
@@ -366,11 +405,11 @@
 
 			<!-- Function for creating XHR HTTP Request -->
             function createXHR() {
-                try { return new XMLHttpRequest(); } catch(e) {}
-                try { return new ActiveXObject("Msxml2.XMLHTTP.6.0"); } catch (e) {}
-                try { return new ActiveXObject("Msxml2.XMLHTTP.3.0"); } catch (e) {}
-                try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {}
-                try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {}
+                try { return new XMLHttpRequest(); } catch(e) {console.log(e)}
+                try { return new ActiveXObject("Msxml2.XMLHTTP.6.0"); } catch (e) {console.log(e)}
+                try { return new ActiveXObject("Msxml2.XMLHTTP.3.0"); } catch (e) {console.log(e)}
+                try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {console.log(e)}
+                try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {console.log(e)}
                 alert("XMLHttpRequest not supported");
                 return null;
             }
@@ -388,6 +427,10 @@
 
             <!-- Function to handle response -->
             function handleResponse(xhr) {
+                if (xhr == null) {
+                    return;
+                }
+
                 <!-- On success: -->
                 var DONE = 4;
                 var OK = 200;
