@@ -230,7 +230,6 @@
                 node.appendChild(createNavBar());
                 node.appendChild(hr);
                 node.appendChild(br);
-                node.appendChild(createForm());
                 return node;
             }
 
@@ -241,24 +240,6 @@
                 headerNode.appendChild(headerText);
                 headerNode.appendChild(createGearDropdown());
                 return headerNode;
-            }
-
-            <!-- Main function to put together form elements -->
-            function createForm() {
-                var formNode = document.createElement("form");
-                formNode.appendChild(createBold("Email Address"));
-                formNode.appendChild(br);
-                formNode.appendChild(createInput("text", "email", "Enter Email"));
-                formNode.appendChild(br);
-                formNode.appendChild(createBold("Password"));
-                formNode.appendChild(br);
-                formNode.appendChild(createInput("text", "password", "Password"));
-                formNode.appendChild(br); formNode.appendChild(br);
-                formNode.appendChild(createLabel());
-                formNode.appendChild(br); formNode.appendChild(br);
-                formNode.appendChild(createButton());
-                formNode.appendChild(br); formNode.appendChild(br); formNode.appendChild(br);
-                return formNode;
             }
 
             <!-- Main function to put together gear settings elements -->
