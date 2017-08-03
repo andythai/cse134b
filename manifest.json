@@ -10,5 +10,6 @@
     "launch": {
       "web_url": "https://b-b2dcd.firebaseapp.com/hw3-dynamic.html"
     }
-  }
+  },
+  "theme_color": "#f0f8ff"
 }
