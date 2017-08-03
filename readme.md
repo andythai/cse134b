@@ -15,6 +15,10 @@ version it is 166ms.
 We used TrackJS to automatically log errors and to check if javascript is loaded in the user browser, 
 and if not, it outputs an error to us.
 
+When attempting to load our page as an extension. Chrome does not recognize icons if we list them as an array
+But if we do not list them as an array, the page does not pass the lighthouse test. We left it as an array,
+so that it would pass the test.
+
 Screenshots are available at:
 https://b-b2dcd.firebaseapp.com/markup_masters_trackjs.png
 https://b-b2dcd.firebaseapp.com/trackjs1.png
